@@ -19,6 +19,8 @@ Everything can be extended. For developers, there are enough hooks and filters t
 
 This is only the first version and much more is coming.
 
+For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
+
 == Installation ==
 
 Upload the caldera-forms folder to /wp-content/plugins/
@@ -36,7 +38,16 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
-1.0.0: initial release
+= 1.0.1 (10 June, 2014) =
+
+* Added Phone Field Type
+* Additional Hooks & Filters
+* Some Bug fixes
+
+
+
+= 1.0.0 =
+Initial Release
 
 == Upgrade Notice ==
 still new, so nothing to upgrade.
