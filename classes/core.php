@@ -446,7 +446,7 @@ class Caldera_Forms {
 					"template"	=>	CFCORE_PATH . "fields/phone/config.php",
 					"preview"	=>	CFCORE_PATH . "fields/phone/preview.php",
 					"default"	=>	array(
-						'default'	=> 23452345,
+						'default'	=> '',
 						'type'	=>	'local'
 					),
 					"scripts"	=> array(
