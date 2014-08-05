@@ -51,7 +51,7 @@ Capture system values, Post/Page data and custom fields, User data, and processo
 Everything can be extended. For developers, there are enough hooks and filters to build on. From frontend handling, to form processing, to editor panels, to field types. At it's core, it's a framework for building applications so you can make what you want.
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-
+For better mail sending, combine with [WP SMTP Mail CONFIG](http://wordpress.org/plugins/wp-smtp-mail-config/) and send through an SMTP service.
 
 
 == Installation ==
