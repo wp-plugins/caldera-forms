@@ -13,6 +13,7 @@ Caldera Forms is a free, simple form builder with a layout builder that enables 
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
 Form Demos and Templates can be found on the demo site [Caldera Forms Demos](http://demo.calderaforms.com/)
+For better mail sending & deliverability, combine with [WP SMTP Mail CONFIG](http://wordpress.org/plugins/wp-smtp-mail-config/) and send through an SMTP service.
 
 = A Few Feature Highlights =
 * Responsive Grid design based on Bootstrap 3
