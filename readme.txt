@@ -3,7 +3,7 @@ Contributors: Desertsnowman
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
 Requires at least: 3.9
 Tested up to: 3.9.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2
 
 Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
@@ -12,10 +12,7 @@ Create complex grid based, responsive forms easily with an easy to use drag and 
 Caldera Forms is a free, simple form builder with a layout builder that enables you to create the format you want for your form. It is fully responsive and with form processors, it gives you flexibility to handle the form data how you need it.
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-
 Form Demos and Templates can be found on the demo site [Caldera Forms Demos](http://demo.calderaforms.com/)
-
-For better mail sending & deliverability, combine with [WP SMTP Mail CONFIG](http://wordpress.org/plugins/wp-smtp-mail-config/) and send through an SMTP service.
 
 = A Few Feature Highlights =
 * Responsive Grid design based on Bootstrap 3
@@ -54,7 +51,7 @@ Capture system values, Post/Page data and custom fields, User data, and processo
 Everything can be extended. For developers, there are enough hooks and filters to build on. From frontend handling, to form processing, to editor panels, to field types. At it's core, it's a framework for building applications so you can make what you want.
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-For better mail sending, combine with [WP SMTP Mail CONFIG](http://wordpress.org/plugins/wp-smtp-mail-config/) and send through an SMTP service.
+
 
 
 == Installation ==
@@ -74,6 +71,20 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.2 (6 August, 2014) =
+
+= Fixed =
+* datepicker clashing with jquery ui.
+* Conditionals working correctly again round 2.
+* validation across pages
+* minor bugs
+
+= Added =
+* Pin to menu option to make direct access to entries way faster
+* Extend menu item for addons and licenses 
+* Community menu item for sharing stuff
+
 
 = 1.1.1 (4 August, 2014) =
 
