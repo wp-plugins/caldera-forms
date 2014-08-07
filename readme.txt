@@ -3,7 +3,7 @@ Contributors: Desertsnowman
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
 Requires at least: 3.9
 Tested up to: 3.9.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2
 
 Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
@@ -71,6 +71,20 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.2 (6 August, 2014) =
+
+= Fixed =
+* datepicker clashing with jquery ui.
+* Conditionals working correctly again round 2.
+* validation across pages
+* minor bugs
+
+= Added =
+* Pin to menu option to make direct access to entries way faster
+* Extend menu item for addons and licenses 
+* Community menu item for sharing stuff
+
 
 = 1.1.1 (4 August, 2014) =
 
