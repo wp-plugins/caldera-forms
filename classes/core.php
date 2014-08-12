@@ -89,12 +89,7 @@ class Caldera_Forms {
 	 *
 	 */
 	public function load_plugin_textdomain() {
-		// TODO: Add translations as need in /languages
-		$domain = $this->plugin_slug;
-		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-
-		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->plugin_slug, FALSE, $this->plugin_slug . '/languages');
 	}
 
 	/// activator
@@ -258,9 +253,10 @@ class Caldera_Forms {
 		include_once CFCORE_PATH . 'fields/recaptcha/recaptchalib.php';
 
 		$resp = recaptcha_check_answer($field['config']['private_key'], $_SERVER["REMOTE_ADDR"], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+		
+		if (empty($resp->is_valid)) {
+			return new WP_Error( 'error', __("The reCAPTCHA wasn't entered correctly.", 'caldera-forms'));
 
-		if (!$resp->is_valid) {
-			return array('_fail' => __("The reCAPTCHA wasn't entered correctly.", 'caldera-forms'));
 		}
 		return true;
 	}
@@ -2134,7 +2130,7 @@ class Caldera_Forms {
 			$form_id = $form;
 			$form = get_option( $form );
 			if(!isset($form['ID']) || $form['ID'] !== $form_id){
-				return new WP_Error( 'fail',  __('Invalid form ID') );
+				return new WP_Error( 'fail',  __('Invalid form ID', 'caldera-forms') );
 			}
 		}
 
@@ -3240,14 +3236,15 @@ class Caldera_Forms {
 				}
 				if(!empty($prev_post['error']) && !empty($prev_post['note'])){
 					$notices['error']['note'] = $prev_post['note'];
-				}
-				if(!empty($prev_post['fields'])){
+				}				
+				if(!empty($prev_post['fields'])){					
 					$field_errors = array();
 					foreach($prev_post['fields'] as $field_id=>$field_error){
+
 						if(is_wp_error( $field_error )){
-							$field_errors[$form['fields'][$field_id]['slug']] = $field_error->get_error_message();
+							$field_errors[$field_id] = $field_error->get_error_message();
 						}else{
-							$field_errors[$form['fields'][$field_id]['slug']] = $field_error;
+							$field_errors[$field_id] = $field_error;
 						}
 					}
 				}
@@ -3378,6 +3375,7 @@ class Caldera_Forms {
 					$field_class = $field_classes['field'];
 
 					if(!empty($field_errors[$field_base_id])){
+
 						$field_input_class .= " " . $field_classes['field_error'];
 						$field_structure['field_caption'] = "<span class=\"" . $field_classes['field_caption'] . "\">" . $field_errors[$field_base_id] . "</span>\r\n";
 					}
