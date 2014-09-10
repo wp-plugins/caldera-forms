@@ -1,4 +1,12 @@
-var rebuild_field_binding, rebind_field_bindings, current_form_fields = {}, required_errors = {}, add_new_grid_page, add_page_grid, init_magic_tags;
+var rebuild_field_binding, 
+	rebind_field_bindings, 
+	current_form_fields = {}, 
+	required_errors = {}, 
+	add_new_grid_page, 
+	add_page_grid, 
+	init_magic_tags,
+	core_form,
+	compiled_templates = {};
 
 init_magic_tags = function(){
 	//init magic tags
@@ -41,10 +49,26 @@ init_magic_tags = function(){
 
 rebuild_field_binding = function(){
 
-	var fields = jQuery('.caldera-editor-field-config-wrapper');
+	// check form is loaded first
+	if(!core_form){
+		core_form = jQuery('.caldera-forms-options-form');
+	}
 
+	if(!core_form.hasClass('builder-loaded')){
+		return;
+	}
+
+	var fields = jQuery('.caldera-editor-field-config-wrapper');//.not('.bound_field');
+
+	// add binding
+	//fields.addClass('bound_field');
 	// clear list
-	current_form_fields = {};
+	/*if(!fields.length){
+		console.log('all bound');
+		rebind_field_bindings();
+		return;
+	}*/
+	
 	// set object
 	system_values.field = {
 		tags	:	{
@@ -54,8 +78,9 @@ rebuild_field_binding = function(){
 		wrap	:	['%','%']
 	};
 
-	fields.each(function(fk,fv){
-		var field_id = jQuery(fv).prop('id'),
+	//fields.each(function(fk,fv){
+	for(var f = 0; f < fields.length; f++){
+		var field_id = fields[f].id,
 			label = jQuery('#' + field_id + '_lable').val(),
 			slug = jQuery('#' + field_id + '_slug').val(),
 			type = jQuery('#' + field_id + '_type').val();
@@ -75,23 +100,47 @@ rebuild_field_binding = function(){
 			type: type
 		};
 
-	});
-	rebind_field_bindings();
+		// bind names
+		jQuery('option.bound-field').trigger('change').each(function(k,v){
+			var bind = jQuery(v);
+			if(bind.prop('value').indexOf('{') !== 0){
+				bind.text( jQuery('#' + bind.prop('value') + '_lable').val() + ' ['+jQuery('#' + bind.prop('value') + '_lable').val() +']');
+			}else{
+				bind.text(bind.prop('value').replace('{','').replace('}',''));
+			}
+		}).removeClass('bound-field');
+	};
+
+	//console.log( jQuery('.caldera-field-bind') );
+	//console.log(current_form_fields);
+	//rebind_field_bindings();
 
 };
 
 rebind_field_bindings = function(){
 
 	//check_required_bindings();
-	
+	//console.log('- rebuild_field_binding');
 	//return;
-	var bindings = jQuery('.caldera-field-bind'),
+	var bindings = jQuery('.caldera-field-bind').not('.bound_field'),
 		type_instances,
 		processor_li;
 
-	bindings.each(function(k,v){
+	
+	
+	if(!bindings.length){
+		var bound = jQuery('.caldera-field-bind.bound_field');
+		bound.trigger('change');
+		return;	
+	}
+	
+	bindings.addClass('bound_field');
+	console.log(bindings);
+	//bindings.trigger('change');
+	//bindings.each(function(k,v){
+	for(var v = 0; v < bindings.length; v++){
 
-		var field = jQuery(v),
+		var field = jQuery(bindings[v]),
 			current = field.val(),
 			default_sel = field.data('default'),
 			excludes = field.data('exclude'),
@@ -100,7 +149,7 @@ rebind_field_bindings = function(){
 			wrapper_id = wrapper.prop('id'),
 			valid = '';	
 
-		if(default_sel){			
+		if(default_sel && !field.hasClass('reload-binding')){
 			current = default_sel;
 		}
 
@@ -224,11 +273,13 @@ rebind_field_bindings = function(){
 			// text types
 			//console.log(field.val())
 		}
-	});
 
-	check_required_bindings();
+	};
+
+	//check_required_bindings();
 	init_magic_tags();
 	jQuery(document).trigger('bound.fields');
+	jQuery('.caldera-header-save-button').prop("disabled", false);
 };
 
 function setup_field_type(obj){
@@ -238,14 +289,20 @@ function setup_field_type(obj){
 
 
 
-function check_required_bindings(){
+function check_required_bindings(el){
 
-	var fields = jQuery('.caldera-config-field .required'),
+	var fields,
 		savebutton = jQuery('.caldera-header-save-button'),
 		field_elements = jQuery('.layout-form-field'),
-		nav_elements = jQuery('.caldera-processor-nav');
+		nav_elements = jQuery('.caldera-processor-nav'),
+		all_clear = true;
 	
-	savebutton.prop("disabled", false);
+	if(el){
+		fields = jQuery(el);
+	}else{
+		fields = jQuery('.caldera-config-field .required');
+	}
+	
 
 	fields.removeClass('has-error');
 	field_elements.removeClass('has-error');
@@ -276,6 +333,7 @@ function check_required_bindings(){
 			required_errors[panel.prop('id')] += 1;
 			field.addClass('has-error');
 
+			all_clear = false;
 			//tab.append('<span class="error-tag">' + required_errors[panel.prop('id')] + '</span>');
 
 		}else{
@@ -309,7 +367,7 @@ function check_required_bindings(){
 	});
 	
 	for(var t in required_errors){
-		savebutton.prop("disabled", true);
+		//savebutton.prop("disabled", true);
 		jQuery('.caldera-forms-options-form').find('a[href="#' + t + '"]').append('<span class="error-tag">' + required_errors[t] + '</span>');
 	}
 	
@@ -326,6 +384,8 @@ function check_required_bindings(){
 	}
 
 	jQuery('.caldera-conditional-field-set').trigger('change');
+
+	return all_clear;
 }
 
 jQuery(document).ready(function($) {
@@ -570,7 +630,15 @@ jQuery(document).ready(function($) {
 				return;
 			}
 			fields.each(function(k,v){
-				$('#' + $(v).data('config') ).remove();
+				var field_id = $(v).data('config');
+				$('#' + field_id ).remove();
+				// remove options 
+				$('option[value="' + field_id + '"]').remove();
+				$('[data-bind="' + field_id + '"]').remove();
+				
+				// remove field
+				delete current_form_fields[field_id];
+
 			});
 		}
 		//return;
@@ -737,7 +805,8 @@ jQuery(document).ready(function($) {
 		
 
 		var clicked = $(this),
-			panel = clicked.parent();
+			panel 	= clicked.parent(),
+			type 	= $('#' + panel.data('config') +'_type').val();
 
 			$('.caldera-editor-field-config-wrapper').hide();
 
@@ -751,7 +820,9 @@ jQuery(document).ready(function($) {
 
 		$(document).trigger('show.' + panel.data('config'));
 
-		$('#' + panel.data('config')).find('.auto-populate-options').trigger('change');
+		if( type === 'radio' || type === 'checkbox' || type === 'dropdown' || type === 'toggle_switch' ){
+			$('#' + panel.data('config') + '_auto').trigger('change');
+		}
 	});
 	$('body').on('click', '.layout-modal-edit-closer,.layout-modal-save-action', function(e){
 		
@@ -845,10 +916,12 @@ jQuery(document).ready(function($) {
 
 		// set active tab
 		clicked.parent().addClass('active');
-
+		rebind_field_bindings();
 	});
 
-	$('body').on('change', '.required', check_required_bindings);
+	$('body').on('change', '.required', function(){
+		check_required_bindings(this);
+	});
 
 	// prevent error forms from submiting
 	$('body').on('submit', '.caldera-forms-options-form', function(e){

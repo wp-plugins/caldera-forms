@@ -276,8 +276,8 @@ function field_wrapper_template($id = '{{id}}', $label = '{{label}}', $slug = '{
 	id="<?php echo $id; ?>" style="display:none;">
 		
 		<div class="toggle_option_tab">
-			<a href="#<?php echo $id; ?>_settings_pane" class="button button-primary">Settings</a>
-			<a href="#<?php echo $id; ?>_conditions_pane" class="button ">Conditions</a>
+			<a href="#<?php echo $id; ?>_settings_pane" class="button button-primary"><?php _e('Settings'); ?></a>
+			<a href="#<?php echo $id; ?>_conditions_pane" class="button "><?php _e('Conditions', 'caldera-forms'); ?></a>
 		</div>
 
 		<h3 class="caldera-editor-field-title"><?php echo $label; ?>&nbsp;</h3>		
@@ -286,7 +286,7 @@ function field_wrapper_template($id = '{{id}}', $label = '{{label}}', $slug = '{
 			<div class="caldera-config-group">
 				<label for="<?php echo $id; ?>_type"><?php echo __('Element Type', 'caldera-forms'); ?></label>
 				<div class="caldera-config-field">
-					<select class="block-input caldera-select-field-type required" id="<?php echo $id; ?>_type" name="config[fields][<?php echo $id; ?>][type]" data-type="<?php echo $type; ?>">					
+					<select class="block-input caldera-select-field-type" data-field="<?php echo $id; ?>" id="<?php echo $id; ?>_type" name="config[fields][<?php echo $id; ?>][type]" data-type="<?php echo $type; ?>">					
 						<?php
 						echo build_field_types($type);
 						?>
@@ -331,7 +331,7 @@ function field_wrapper_template($id = '{{id}}', $label = '{{label}}', $slug = '{
 			<div class="caldera-config-group caption-field">
 				<label for="<?php echo $id; ?>_caption"><?php echo __('Description', 'caldera-forms'); ?></label>
 				<div class="caldera-config-field">
-					<input type="text" class="block-input field-config" id="<?php echo $id; ?>_caption" name="config[fields][<?php echo $id; ?>][caption]" value="<?php echo sanitize_text_field( $caption ); ?>">
+					<input type="text" class="block-input field-config" id="<?php echo $id; ?>_caption" name="config[fields][<?php echo $id; ?>][caption]" value="<?php echo esc_html( $caption ); ?>">
 				</div>
 			</div>
 			
@@ -353,6 +353,7 @@ function field_wrapper_template($id = '{{id}}', $label = '{{label}}', $slug = '{
 					<option value=""></option>
 					<option value="show" <?php if($condition_type == 'show'){ echo 'selected="selected"'; } ?>><?php echo __('Show', 'caldera-forms'); ?></option>
 					<option value="hide" <?php if($condition_type == 'hide'){ echo 'selected="selected"'; } ?>><?php echo __('Hide', 'caldera-forms'); ?></option>
+					<option value="disable" <?php if($condition_type == 'disable'){ echo 'selected="selected"'; } ?>><?php echo __('Disable', 'caldera-forms'); ?></option>
 				</select>
 				<button id="<?php echo $id; ?>_condition_group_add" style="display:none;" type="button" data-id="<?php echo $id; ?>" class="pull-right button button-small add-conditional-group ajax-trigger" data-template="#conditional-group-tmpl" data-target-insert="append" data-request="new_conditional_group" data-type="fields" data-callback="rebuild_field_binding" data-target="#<?php echo $id; ?>_conditional_wrap"><?php echo __('Add Conditional Group', 'caldera-forms'); ?></button>
 			</p>
@@ -462,7 +463,7 @@ function field_line_template($id = '{{id}}', $label = '{{label}}', $group = '{{g
 			<label><input type="radio" class="field-config" name="config[pinned]" value="0" <?php if(empty($element['pinned'])){ ?>checked="checked"<?php } ?>> <?php echo __('Disabled', 'caldera-forms'); ?></label>
 		</div>
 	</div>
-
+	
 	<div class="caldera-config-group">
 		<label><?php echo __('Hide Form', 'caldera-forms'); ?> </label>
 		<div class="caldera-config-field">
@@ -479,7 +480,11 @@ function field_line_template($id = '{{id}}', $label = '{{label}}', $group = '{{g
 	<div class="caldera-config-group">
 		<label><?php echo __('Gravatar Field', 'caldera-forms'); ?> </label>
 		<div class="caldera-config-field">
-			<select style="width:500px;" class="field-config caldera-field-bind" name="config[avatar_field]" data-exclude="system" data-default="<?php if(!empty($element['avatar_field'])){ echo $element['avatar_field']; } ?>" data-type="email"></select>
+			<select style="width:500px;" class="field-config caldera-field-bind" name="config[avatar_field]" data-exclude="system" data-default="<?php if(!empty($element['avatar_field'])){ echo $element['avatar_field']; } ?>" data-type="email">
+			<?php
+			if(!empty($element['avatar_field'])){ echo '<option value="'.$element['avatar_field'].'"></option>'; }
+			?>
+			</select>
 			<p class="description"><?php echo __('Used when viewing an entry from a non-logged in user.','caldera-forms'); ?></p>
 		</div>
 	</div>
@@ -762,7 +767,7 @@ do_action('caldera_forms_edit_end', $element);
 	</div>
 	{{/each}}
 </script>
-<script type="text/html" id="noconfig_field_templ">
+<script type="text/html" id="noconfig_field_templ" class="cf-editor-template">
 <div class="caldera-config-group">
 	<label>Default</label>
 	<div class="caldera-config-field">
@@ -778,7 +783,9 @@ do_action('caldera_forms_edit_end', $element);
 				{{#each lines}}
 				<div class="caldera-condition-line">
 					if 
-					<select name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][field]" data-condition="{{../type}}" class="caldera-field-bind caldera-conditional-field-set" data-id="{{../../id}}" data-default="{{field}}" data-line="{{id}}" data-row="{{../id}}" data-all="true" style="max-width:120px;"></select>
+					<select name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][field]" data-condition="{{../type}}" class="caldera-field-bind caldera-conditional-field-set" data-id="{{../../id}}" {{#if field}}data-default="{{field}}"{{/if}} data-line="{{id}}" data-row="{{../id}}" data-all="true" style="max-width:120px;">
+						{{#if field}}<option value="{{field}}" class="bound-field" selected="selected"></option>{{else}}<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>{{/if}}
+					</select>
 					<select name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][compare]" style="max-width:110px;">
 						<option value="is" {{#is compare value="is"}}selected="selected"{{/is}}><?php echo __('is', 'caldera-forms'); ?></option>
 						<option value="isnot" {{#is compare value="isnot"}}selected="selected"{{/is}}><?php echo __('is not', 'caldera-forms'); ?></option>
@@ -819,7 +826,7 @@ do_action('caldera_forms_edit_end', $element);
 
 /// Output the field templates
 foreach($field_type_templates as $key=>$template){
-	echo "<script type=\"text/html\" id=\"" . $key . "\">\r\n";
+	echo "<script type=\"text/html\" class=\"cf-editor-template\" id=\"" . $key . "\">\r\n";
 		echo $template;
 	echo "\r\n</script>\r\n";
 }
