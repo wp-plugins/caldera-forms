@@ -23,11 +23,6 @@ class Caldera_Forms_Admin {
 	const VERSION = CFCORE_VER;
 
 	/**
-	 * @var     string
-	 */
-	const UPDATE_URL   = 'http://fooplugins.com/api/';
-
-	/**
 	 * @var      string
 	 */
 	protected $plugin_slug = 'caldera-forms';
@@ -80,35 +75,18 @@ class Caldera_Forms_Admin {
 		add_action( 'admin_footer', array( $this, 'add_shortcode_inserter'));
 
 
-		$addons = apply_filters( 'caldera_forms_get_addons', array() );
+		$addons = apply_filters( 'caldera_forms_get_active_addons', array() );
+		if(!empty($addons)){
+			foreach($addons as $slug=>$addon){
 
-		foreach($addons as $slug=>$file){
+				if($addon['type'] == 'selldock'){
+					// selldock type
+					new SellDock_Updater( $addon['slug'], $addon['file']);
+				}
 
-			//initialize plugin update checks with fooplugins.com
-			new foolic_update_checker_v1_5(
-				$file, //the plugin file
-				self::UPDATE_URL . $slug . '/check', //the URL to check for updates
-				$slug, //the plugin slug
-				get_site_option($slug . '_licensekey') //the stored license key
-			);
-
-			//initialize license key validation with fooplugins.com
-			new foolic_validation_v1_4(
-				self::UPDATE_URL . $slug . '/check', //the URL to validate
-				$slug
-			);
-
-			add_filter('foolic_validation_include_css-' . $slug, array(&$this, 'include_foolic_files'));
-			add_filter('foolic_validation_include_js-' . $slug, array(&$this, 'include_foolic_files'));
-
+			}
 		}
 
-	}
-
-
-	//make sure the foo license validation CSS & JS are included on the correct page
-	function include_foolic_files($screen) {
-		return $screen->id === 'caldera-forms_page_caldera-forms-exend';
 	}
 
 

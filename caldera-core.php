@@ -4,7 +4,7 @@
   Plugin URI: http://digilab.co.za
   Description: Easy to use, grid based responsive form builder for creating simple to complex forms.
   Author: David Cramer
-  Version: 1.1.4
+  Version: 1.1.5
   Author URI: http://digilab.co.za
  */
 
@@ -17,14 +17,13 @@ if ( ! defined( 'WPINC' ) ) {
 
 define('CFCORE_PATH', plugin_dir_path(__FILE__));
 define('CFCORE_URL', plugin_dir_url(__FILE__));
-define('CFCORE_VER', '1.1.4');
+define('CFCORE_VER', '1.1.5');
 define('CFCORE_EXTEND_URL', 'https://api.calderaforms.com/1.0/');
 
 include_once CFCORE_PATH . 'classes/core.php';
 include_once CFCORE_PATH . 'classes/widget.php';
 // licencing
-require_once( CFCORE_PATH . 'classes/foolic_update_checker.php' );
-require_once( CFCORE_PATH . 'classes/foolic_license_key_validation.php' );
+require_once( CFCORE_PATH . 'classes/selldock_updater.php' );
 
 // includes
 include_once CFCORE_PATH . 'includes/cf-ajax/plugin.php';
