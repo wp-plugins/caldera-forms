@@ -3,7 +3,7 @@ Contributors: Desertsnowman
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
 Requires at least: 3.9
 Tested up to: 4.0
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2
 
 Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
@@ -71,6 +71,19 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.5 (18 September, 2014) =
+
+= Fixed =
+* corrected typos in the textdomain
+* Validation classes added to Alerts and not Forms.
+* Minor bug fixes that where annoying me
+
+= Updated =
+* Handlebars.js v2
+
+= Added =
+* Gravatar field for live display of gravatar.
 
 = 1.1.4 (17 August, 2014) =
 
