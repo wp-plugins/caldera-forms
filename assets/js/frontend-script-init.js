@@ -94,6 +94,10 @@
 			
 		}
 
+		$('html, body').animate({
+			scrollTop: form.offset().top - 100
+		}, 200);
+
 		$(document).trigger('cf.pagenav');
 
 	})
