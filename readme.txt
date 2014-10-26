@@ -3,16 +3,18 @@ Contributors: Desertsnowman
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
 Requires at least: 3.9
 Tested up to: 4.0
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv2
 
 Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
 
 == Description ==
-Caldera Forms is a free, simple form builder with a layout builder that enables you to create the format you want for your form. It is fully responsive and with form processors, it gives you flexibility to handle the form data how you need it.
+Caldera Forms is an easy to use free WordPress form builder with a layout builder that enables you to create the format you want for your form. It is fully responsive and with form processors, it gives you flexibility to handle the form data how you need it without needing a single line of code.
+
+Easy enough for everyday users to create forms, and powerful enough for php ninjas to extend.
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-Form Docs, Demos & Templates can be found on the docs site (work in progress) [Caldera Forms Docs](http://docs.calderaforms.com/)
+Form Docs, Demos & Templates can be found on the docs site (work in progress) [Caldera Forms Documentation](http://docs.calderaforms.com/)
 
 = A Few Feature Highlights =
 * Responsive Grid design based on Bootstrap 3
@@ -72,6 +74,19 @@ none yet.
 
 == Changelog ==
 
+= 1.1.9 (26 october, 2014) =
+
+= Fixed =
+* multi page validation on radios + checkboxes
+* minor bug fixes
+
+= Improved =
+* {embed_post:*} available in archive list
+
+= Added =
+* Live preview on shortcode in editor. really. It's awesome.
+* Additional filters to aid in auto-populating fields
+
 = 1.1.8 (7 October, 2014) =
 
 = Fixed =
@@ -82,7 +97,6 @@ none yet.
 = Improved =
 * Moved entry creation to just after pre-processor to allow for {entry_id} to be usable
 * Class wrapper locations improved for better addons
-
 
 = 1.1.7 (29 September, 2014) =
 
