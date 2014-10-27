@@ -56,7 +56,7 @@ function cf_ajax_redirect($type, $url, $form){
 	$note_general_classes = array(
 		'alert'
 	);
-	$note_general_classes = apply_filters('caldera_forms_render_note_general_classes', $note_general_classes, $form);
+	$note_general_classes = apply_filters( 'caldera_forms_render_note_general_classes', $note_general_classes, $form);
 
 	// base id
 	$form_id = 'caldera_form_1';
@@ -101,7 +101,7 @@ function cf_ajax_redirect($type, $url, $form){
 			}
 		}
 	}
-	$notices = apply_filters('caldera_forms_render_notices', $notices, $form);
+	$notices = apply_filters( 'caldera_forms_render_notices', $notices, $form);
 
 	$note_classes = array(
 		'success'	=> array_merge($note_general_classes, array(
@@ -121,7 +121,7 @@ function cf_ajax_redirect($type, $url, $form){
 		)),
 	);
 	
-	$note_classes = apply_filters('caldera_forms_render_note_classes', $note_classes, $form);
+	$note_classes = apply_filters( 'caldera_forms_render_note_classes', $note_classes, $form);
 
 	$html = '';
 
@@ -143,16 +143,20 @@ function cf_ajax_redirect($type, $url, $form){
 		if(!empty($query['cf_su'])){
 			unset($query['cf_su']);
 		}
+		if(!empty($query['cf_ee'])){
+			$out['entry'] = $query['cf_ee'];
+		}
 		$out['data'] = $query;
 	}
 	$out['html'] = $html;
 	$out['type'] = ( isset($data['type']) ? $data['type'] : $type );
+	$out['form_id'] = $form['ID'];
+	$out['form_name'] = $form['name'];	
 	$out['status'] = $type;
 
-	$out = apply_filters('caldera_forms_ajax_return', $out, $form);
+	$out = apply_filters( 'caldera_forms_ajax_return', $out, $form);
 
-	header('Content-Type: application/json');
-	echo json_encode( $out );
+	wp_send_json( $out );
 	exit;
 
 }
