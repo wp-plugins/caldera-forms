@@ -16,6 +16,12 @@ function cf_form_ajaxsetup($form){
 		<label><input type="checkbox" value="1" name="config[form_ajax]" class="field-config"<?php if(isset($form['form_ajax'])){ echo ' checked="checked"'; } ?>> <?php echo __('Enable Ajax Submissions. (No page reloads)', 'caldera-forms'); ?></label>
 	</div>
 </div>
+<div class="caldera-config-group">
+	<label><?php echo __('Multiple Ajax Submissions', 'caldera-forms'); ?></label>
+	<div class="caldera-config-field">
+		<label><input type="checkbox" value="1" name="config[form_ajax_post_submission_disable]" class="field-config"<?php if(isset($form['form_ajax_post_submission_disable'])){ echo ' checked="checked"'; } ?>> <?php echo __('If set, form can be submitted multiple times with out a new page load.', 'caldera-forms'); ?></label>
+	</div>
+</div>
 <?php	
 }
 
@@ -170,8 +176,8 @@ function cf_ajax_register_scripts($classes, $form){
 
 	// enqueue scripts
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'cfajax-baldrick', CFCORE_URL . 'assets/js/jquery.baldrick.js', array('jquery'), CFCORE_VER, true );
-	wp_enqueue_script( 'cfajax-core', plugin_dir_url(__FILE__) . 'js/ajax-core.js', array('cfajax-baldrick'), CFCORE_VER, true );
+	wp_enqueue_script( 'cfajax-baldrick', CFCORE_URL . 'assets/js/jquery.baldrick.min.js', array('jquery'), CFCORE_VER, true );
+	wp_enqueue_script( 'cfajax-core', plugin_dir_url(__FILE__) . 'js/ajax-core.min.js', array('jquery'), CFCORE_VER, true );
 
 	$classes[] = 'cfajax-trigger';
 
@@ -180,6 +186,11 @@ function cf_ajax_register_scripts($classes, $form){
 
 function cf_ajax_setatts($atts, $form){
 	global $current_form_count;
+
+	$post_disable = 0;
+	if ( isset( $form[ 'form_ajax_post_submission_disable' ] ) ) {
+		$post_disable = $form[ 'form_ajax_post_submission_disable' ];
+	}
 	
 	$resatts = array(
 		'data-target'		=>	'#caldera_notices_'.$current_form_count,
@@ -187,6 +198,7 @@ function cf_ajax_setatts($atts, $form){
 		'data-cfajax'		=>	$form['ID'],
 		'data-load-element' => '_parent',
 		'data-load-class' 	=> 'cf_processing',
+		'data-post-disable' => $post_disable,
 	);
 	if(!empty($form['hide_form'])){
 		$resatts['data-hiderows'] = "true";
