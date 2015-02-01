@@ -1,7 +1,13 @@
 <?php
-/*
- *  SellDock autoupdater class
+/**
+ * SellDock update checker for handling premium addons and extentions auto updates hosted externally
+ *
+ * @author    David Cramer <david@digilab.co.za>
+ * @license   GPL-2.0+
+ * @link
+ * @copyright 2014 David Cramer <david@digilab.co.za>
  */
+
 
 if( !class_exists('SellDock_Updater_v3') ) {
     class SellDock_Updater_v3 {

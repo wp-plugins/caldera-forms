@@ -22,7 +22,8 @@ define('CFCORE_EXTEND_URL', 'https://api.calderaforms.com/1.0/');
 
 include_once CFCORE_PATH . 'classes/core.php';
 include_once CFCORE_PATH . 'classes/widget.php';
-// licencing
+
+// Update checker for external addons and extensions
 require_once( CFCORE_PATH . 'classes/selldock_updater.php' );
 
 // includes
