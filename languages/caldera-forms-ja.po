@@ -1,0 +1,1519 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Caldera Forms\n"
+"POT-Creation-Date: 2014-10-07 14:31+0200\n"
+"PO-Revision-Date: 2014-10-07 14:31+0200\n"
+"Last-Translator: David Cramer <david@caldera.co.za>\n"
+"Language-Team: Kiho Shin\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../classes/admin.php:159 ../classes/admin.php:160 ../classes/admin.php:262
+#: ../ui/entries_toolbar.php:27
+msgid "Trash"
+msgstr "ゴミ箱"
+
+#: ../classes/admin.php:160 ../classes/admin.php:262
+#: ../ui/admin_templates.php:9
+msgid "Restore"
+msgstr "復元"
+
+#: ../classes/admin.php:260 ../ui/admin_templates.php:99
+msgid "Entry"
+msgstr "エントリー"
+
+#: ../classes/admin.php:260
+msgid "View"
+msgstr "表示"
+
+#: ../classes/admin.php:302
+msgid "Add Form to Page"
+msgstr "ページにフォームを追加"
+
+#: ../classes/admin.php:303
+msgid "Insert Form Shortcode"
+msgstr "フォームのショートコードを挿入"
+
+#: ../classes/admin.php:303 ../classes/widget.php:8
+msgid "Caldera Form"
+msgstr "Caldera フォーム"
+
+#: ../classes/admin.php:520 ../classes/admin.php:526 ../classes/admin.php:532
+#: ../classes/admin.php:533 ../classes/admin.php:567 ../classes/admin.php:571
+#: ../includes/filter_addon_plugins.php:41 ../ui/admin.php:32
+#: ../ui/community.php:5 ../ui/edit.php:422 ../ui/extend.php:5
+msgid "Caldera Forms"
+msgstr "Caldera フォーム"
+
+#: ../classes/admin.php:521
+msgid "Caldera Forms Admin"
+msgstr ""
+
+#: ../classes/admin.php:521
+msgid "Forms"
+msgstr "フォーム"
+
+#: ../classes/admin.php:532 ../ui/community.php:8
+msgid "Community"
+msgstr "コミュニティ"
+
+#: ../classes/admin.php:533 ../ui/extend.php:8
+msgid "Extend"
+msgstr "拡張する"
+
+#: ../classes/admin.php:764 ../classes/admin.php:841
+msgid "Sorry, please try again"
+msgstr "もう一度試してください"
+
+#: ../classes/admin.php:764
+msgid "Form Delete Error"
+msgstr "フォーム削除エラー"
+
+#: ../classes/admin.php:832
+msgid "Sorry, File is not valid."
+msgstr "ファイルに対応していません。"
+
+#: ../classes/admin.php:832 ../classes/admin.php:836 ../classes/admin.php:841
+msgid "Form Import Error"
+msgstr "フォームのインポート エラー"
+
+#: ../classes/admin.php:836
+msgid "Sorry, File not uploaded."
+msgstr "ファイルのアップロードに失敗しました。"
+
+#: ../classes/admin.php:850
+msgid "Form does not exist."
+msgstr "フォームが見つかりません。"
+
+#: ../classes/admin.php:890
+msgid "Export selection has expired"
+msgstr "エクスポートの設定"
+
+#: ../classes/admin.php:890
+msgid "Export Expired"
+msgstr ""
+
+#: ../classes/admin.php:1062
+msgid "Form has been successfuly submitted. Thank you."
+msgstr "送信されました。有難うございます。"
+
+#: ../classes/admin.php:1099 ../classes/admin.php:1115
+msgid "Layout"
+msgstr "レイアウト"
+
+#: ../classes/admin.php:1117
+msgid "Layout Builder"
+msgstr "レイアウト ビルダー"
+
+#: ../classes/admin.php:1127
+msgid "Pages"
+msgstr "ページ"
+
+#: ../classes/admin.php:1129
+msgid "Form Pages"
+msgstr ""
+
+#: ../classes/admin.php:1133
+msgid "Processors"
+msgstr "処理"
+
+#: ../classes/admin.php:1135 ../ui/panels/processors.php:166
+msgid "Form Processors"
+msgstr "フォーム処理"
+
+#: ../classes/admin.php:1139 ../classes/admin.php:1141
+#: ../ui/panels/variables.php:80
+msgid "Variables"
+msgstr "変数"
+
+#: ../classes/admin.php:1148
+msgid "Responsive"
+msgstr "レスポンシブ"
+
+#: ../classes/admin.php:1150
+msgid "Resposive Settings"
+msgstr "レスポンシブ設定"
+
+#: ../classes/admin.php:1154
+msgid "Grid Collapse"
+msgstr "グリッドを縮小表示"
+
+#: ../classes/admin.php:1156
+msgid ""
+"Set the smallest screen size at which to collapse the grid. (based on "
+"Bootstrap 3.0)"
+msgstr "縮小表示次の最小表示サイズを設定 (Bootstrap 3.0 に基づく)"
+
+#: ../classes/admin.php:1163
+msgid "Maintain grid always"
+msgstr "常にグリッド設定を保持する"
+
+#: ../classes/admin.php:1183 ../ui/panels/emailer.php:32
+msgid "Mailer"
+msgstr "メーラー"
+
+#: ../classes/admin.php:1185
+msgid "Email Notification Settings"
+msgstr "メール通知設定"
+
+#: ../classes/core.php:271 ../classes/core.php:278
+msgid "The reCAPTCHA wasn't entered correctly."
+msgstr "reCAPTCHA が間違っています。"
+
+#: ../classes/core.php:406 ../classes/core.php:420 ../classes/core.php:2518
+msgid "Permission denied."
+msgstr "権限がありません。"
+
+#: ../classes/core.php:532 ../ui/panels/emailer.php:4
+msgid "Caldera Forms Notification"
+msgstr "Caldera フォームの通知"
+
+#: ../classes/core.php:826
+msgid "Auto Responder"
+msgstr "自動返信メール"
+
+#: ../classes/core.php:827
+msgid "Sends out an auto response e-mail"
+msgstr "自動返信メールを送る"
+
+#: ../classes/core.php:831
+msgid "Thank you for contacting us"
+msgstr "お問い合わせ有難うございます。"
+
+#: ../classes/core.php:835
+msgid "Redirect"
+msgstr "転送"
+
+#: ../classes/core.php:836
+msgid "Redirects user to URL on successful submit"
+msgstr "送信成功後転送するURL"
+
+#: ../classes/core.php:845
+msgid "Akismet"
+msgstr ""
+
+#: ../classes/core.php:846
+msgid "Anti-spam filtering"
+msgstr ""
+
+#: ../classes/core.php:862
+msgid "Akismet not setup."
+msgstr ""
+
+#: ../classes/core.php:989
+msgid "Calculation"
+msgstr "計算"
+
+#: ../classes/core.php:992 ../classes/core.php:1014 ../classes/core.php:1051
+#: ../classes/core.php:1134 ../classes/core.php:1237
+msgid "Special"
+msgstr "スペシャル"
+
+#: ../classes/core.php:992
+msgid "Math"
+msgstr ""
+
+#: ../classes/core.php:993
+msgid "Calculate values"
+msgstr "計算値"
+
+#: ../classes/core.php:1000
+msgid "Total"
+msgstr "合計"
+
+#: ../classes/core.php:1012
+msgid "Range Slider"
+msgstr "レンジ スライダー"
+
+#: ../classes/core.php:1015
+msgid "Range Slider input field"
+msgstr "レンジ スライダー入力フィールド"
+
+#: ../classes/core.php:1049
+msgid "Star Rating"
+msgstr "スター評価"
+
+#: ../classes/core.php:1051
+msgid "Feedback"
+msgstr ""
+
+#: ../classes/core.php:1052
+msgid "Star rating input for feedback"
+msgstr "フィードバックのスター評価"
+
+#: ../classes/core.php:1084
+msgid "Phone Number"
+msgstr "電話番号"
+
+#: ../classes/core.php:1085
+msgid "Phone number with masking"
+msgstr "フォーマット化された電話番号"
+
+#: ../classes/core.php:1087 ../classes/core.php:1109 ../classes/core.php:1178
+#: ../classes/core.php:1215 ../classes/core.php:1225 ../classes/core.php:1322
+#: ../classes/core.php:1348
+msgid "Text Fields"
+msgstr "テキスト入力"
+
+#: ../classes/core.php:1087 ../classes/core.php:1109 ../classes/core.php:1124
+#: ../classes/core.php:1178 ../classes/core.php:1194 ../classes/core.php:1215
+#: ../classes/core.php:1225 ../classes/core.php:1266 ../classes/core.php:1285
+#: ../classes/core.php:1304 ../ui/edit.php:148
+msgid "Basic"
+msgstr "ベーシック"
+
+#: ../classes/core.php:1087
+msgid "User"
+msgstr ""
+
+#: ../classes/core.php:1106 ../classes/core.php:1107
+msgid "Single Line Text"
+msgstr "一行のテキスト入力"
+
+#: ../classes/core.php:1120 ../classes/core.php:1124
+msgid "File"
+msgstr ""
+
+#: ../classes/core.php:1121
+msgid "File Uploader"
+msgstr "ファイル アップローダ"
+
+#: ../classes/core.php:1131
+msgid "reCAPTCHA"
+msgstr ""
+
+#: ../classes/core.php:1132
+msgid "reCAPTCHA anti-spam field"
+msgstr "reCAPTCHA アンチスパム フィールド"
+
+#: ../classes/core.php:1157
+msgid "HTML"
+msgstr ""
+
+#: ../classes/core.php:1158
+msgid "Add text/html content"
+msgstr "text/html コンテンツの追加"
+
+#: ../classes/core.php:1160 ../fields/html/config_template.php:2
+#: ../processors/akismet/config.php:20
+msgid "Content"
+msgstr "コンテンツ"
+
+#: ../classes/core.php:1175 ../classes/core.php:1176
+msgid "Hidden"
+msgstr "非表示"
+
+#: ../classes/core.php:1191 ../fields/button/config_template.php:6
+msgid "Button"
+msgstr ""
+
+#: ../classes/core.php:1192
+msgid "Button, Submit and Reset types"
+msgstr "ボタン、送信、リセット"
+
+#: ../classes/core.php:1194
+msgid "Buttons"
+msgstr ""
+
+#: ../classes/core.php:1212 ../classes/core.php:1213
+msgid "Email Address"
+msgstr "メールアドレス"
+
+#: ../classes/core.php:1222 ../classes/core.php:1223
+msgid "Paragraph Textarea"
+msgstr "テキスト エリア入力"
+
+#: ../classes/core.php:1235 ../classes/core.php:1236
+msgid "Toggle Switch"
+msgstr "トグル スイッチ"
+
+#: ../classes/core.php:1237 ../classes/core.php:1266 ../classes/core.php:1285
+#: ../classes/core.php:1304
+msgid "Select Options"
+msgstr ""
+
+#: ../classes/core.php:1263 ../classes/core.php:1264
+msgid "Dropdown Select"
+msgstr "ドロップダウンリスト"
+
+#: ../classes/core.php:1282 ../classes/core.php:1283
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+#: ../classes/core.php:1301 ../classes/core.php:1302
+msgid "Radio"
+msgstr "ラジオボタン"
+
+#: ../classes/core.php:1319 ../classes/core.php:1320
+msgid "Date Picker"
+msgstr "日付ピッカー"
+
+#: ../classes/core.php:1322 ../classes/core.php:1348
+msgid "Pickers"
+msgstr ""
+
+#: ../classes/core.php:1346 ../classes/core.php:1347
+msgid "Color Picker"
+msgstr "カラーピッカー"
+
+#: ../classes/core.php:1646
+msgid "System Tags"
+msgstr "システムタグ"
+
+#: ../classes/core.php:2287
+msgid "Invalid form ID"
+msgstr "無効なフォームID "
+
+#: ../classes/core.php:2528 ../classes/core.php:2533 ../classes/core.php:2540
+#: ../classes/core.php:3453 ../classes/core.php:3469 ../classes/core.php:3472
+#: ../classes/core.php:3476
+msgid "Permission denied or entry does not exist."
+msgstr "アクセス権限が無いかエントリーが存在しません。"
+
+#: ../classes/core.php:2577
+msgid "is required"
+msgstr "は必須項目"
+
+#: ../classes/selldock_updater.php:86
+msgid ""
+"An Unexpected HTTP Error occurred during the API request.</p> <p><a href=\"?"
+"\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+msgstr ""
+
+#: ../classes/selldock_updater.php:90
+#, fuzzy
+msgid "An unknown error occurred"
+msgstr "予期せぬエラーです"
+
+#: ../classes/selldock_updater.php:119
+msgid "Please enter a license key"
+msgstr "ライセンスキーを入力してください"
+
+#: ../classes/widget.php:43
+msgid "Title"
+msgstr "タイトル"
+
+#: ../classes/widget.php:47 ../ui/admin.php:52 ../ui/admin.php:68
+msgid "Form"
+msgstr "フォーム"
+
+#: ../fields/button/config_template.php:2
+msgid "Type"
+msgstr ""
+
+#: ../fields/button/config_template.php:5
+msgid "Submit"
+msgstr ""
+
+#: ../fields/button/config_template.php:7
+msgid "Next Page"
+msgstr ""
+
+#: ../fields/button/config_template.php:8
+msgid "Previous Page"
+msgstr ""
+
+#: ../fields/button/config_template.php:9
+msgid "Reset"
+msgstr ""
+
+#: ../fields/button/config_template.php:14
+msgid "Class"
+msgstr ""
+
+#: ../fields/calculation/config.php:2
+msgid "Element"
+msgstr ""
+
+#: ../fields/calculation/config.php:8
+msgid "Classes"
+msgstr "クラス"
+
+#: ../fields/calculation/config.php:14
+msgid "Before"
+msgstr "前"
+
+#: ../fields/calculation/config.php:20
+msgid "After"
+msgstr "後"
+
+#: ../fields/calculation/config.php:27
+msgid "Money Format"
+msgstr ""
+
+#: ../fields/calculation/config.php:32
+msgid "Manual Formula"
+msgstr "マニュアル数式"
+
+#: ../fields/calculation/config.php:45
+msgid "Add Operator Group"
+msgstr ""
+
+#: ../fields/calculation/config.php:54
+msgid "Use %field_slug% as field vaule variables"
+msgstr "%field_slug% を入力変数として使用する"
+
+#: ../fields/checkbox/config_template.php:3
+#: ../fields/radio/config_template.php:4
+msgid "Inline"
+msgstr ""
+
+#: ../fields/color_picker/setup.php:2 ../fields/date_picker/setup.php:2
+#: ../fields/email/config.php:8 ../fields/paragraph/config_template.php:14
+#: ../fields/phone/config.php:8 ../fields/range_slider/config.php:10
+#: ../fields/text/config.php:8
+msgid "Default"
+msgstr ""
+
+#: ../fields/color_picker/setup.php:2
+msgid "Color"
+msgstr ""
+
+#: ../fields/date_picker/setup.php:8
+msgid "Format"
+msgstr ""
+
+#: ../fields/email/config.php:2 ../fields/paragraph/config_template.php:2
+#: ../fields/phone/config.php:2 ../fields/text/config.php:2
+msgid "Placeholder"
+msgstr ""
+
+#: ../fields/file/config_template.php:2
+msgid "Attach to mailer"
+msgstr "メーラーに添付"
+
+#: ../fields/file/config_template.php:9
+msgid "Allowed Types"
+msgstr "使用可能なタイプ"
+
+#: ../fields/file/config_template.php:12
+msgid "Comma separated eg. jpg,pdf,txt"
+msgstr "コンマ区切り、jpg, pdf, txt"
+
+#: ../fields/gravatar/config.php:2
+#, fuzzy
+msgid "Email Field"
+msgstr "メールのタイプ"
+
+#: ../fields/gravatar/config.php:10
+msgid "Mystery Man"
+msgstr ""
+
+#: ../fields/gravatar/config.php:11
+msgid "Blank"
+msgstr ""
+
+#: ../fields/gravatar/config.php:12
+#, fuzzy
+msgid "Gravatar Logo"
+msgstr "Gravatar 用フィールド"
+
+#: ../fields/gravatar/config.php:13
+msgid "Identicon (Generated)"
+msgstr ""
+
+#: ../fields/gravatar/config.php:14
+msgid "Wavatar (Generated)"
+msgstr ""
+
+#: ../fields/gravatar/config.php:15
+msgid "MonsterID (Generated)"
+msgstr ""
+
+#: ../fields/gravatar/config.php:16
+msgid "Retro (Generated)"
+msgstr ""
+
+#: ../fields/gravatar/config.php:21
+#, fuzzy
+msgid "Fallback"
+msgstr "パスバック"
+
+#: ../fields/gravatar/config.php:35 ../fields/image_picker/setup.php:2
+msgid "Size"
+msgstr ""
+
+#: ../fields/gravatar/config.php:42
+#, fuzzy
+msgid "Border Color"
+msgstr "ボーダー"
+
+#: ../fields/gravatar/config.php:49
+#, fuzzy
+msgid "Border Size"
+msgstr "ボーダー"
+
+#: ../fields/gravatar/config.php:56
+#, fuzzy
+msgid "Border Radius"
+msgstr "ボーダー"
+
+#: ../fields/hidden/setup.php:2 ../ui/admin_templates.php:116
+#: ../ui/admin_templates.php:145 ../ui/edit.php:113
+#: ../ui/panels/variables.php:12
+msgid "Value"
+msgstr "入力値"
+
+#: ../fields/image_picker/field.php:41 ../fields/image_picker/field.php:43
+#: ../fields/image_picker/field.php:46 ../fields/image_picker/setup.php:36
+#: ../fields/image_picker/setup.php:37
+msgid "Select Image"
+msgstr "イメージ選択"
+
+#: ../fields/image_picker/field.php:41 ../fields/image_picker/field.php:46
+#: ../fields/image_picker/setup.php:36 ../fields/image_picker/setup.php:37
+msgid "Use Image"
+msgstr "使用するイメージ"
+
+#: ../fields/image_picker/field.php:43
+msgid "Uploading.."
+msgstr "アップロード中.."
+
+#: ../fields/image_picker/field.php:46 ../fields/image_picker/setup.php:37
+#: ../ui/edit.php:659 ../ui/edit.php:693
+msgid "Remove"
+msgstr "削除"
+
+#: ../fields/image_picker/setup.php:2
+msgid "Picker"
+msgstr ""
+
+#: ../fields/paragraph/config_template.php:8
+msgid "Rows"
+msgstr ""
+
+#: ../fields/phone/config.php:14
+msgid "Style"
+msgstr ""
+
+#: ../fields/phone/config.php:16
+msgid "Local"
+msgstr ""
+
+#: ../fields/phone/config.php:18
+msgid "International"
+msgstr ""
+
+#: ../fields/phone/config.php:20
+msgid "Custom"
+msgstr ""
+
+#: ../fields/phone/config.php:22
+msgid "Use the digit 9 to indicate a number"
+msgstr "\"9\" を数値識別子として使用する"
+
+#: ../fields/range_slider/config.php:17
+msgid "Track"
+msgstr "追跡"
+
+#: ../fields/range_slider/config.php:23
+msgid "Highlight"
+msgstr "ハイライト"
+
+#: ../fields/range_slider/config.php:29
+msgid "Handle"
+msgstr "ハンドル"
+
+#: ../fields/range_slider/config.php:35
+msgid "Border"
+msgstr "ボーダー"
+
+#: ../fields/range_slider/config.php:42
+msgid "Steps"
+msgstr "ステップ"
+
+#: ../fields/range_slider/config.php:48
+msgid "Minimum"
+msgstr "最小"
+
+#: ../fields/range_slider/config.php:54
+msgid "Maximum"
+msgstr "最大"
+
+#: ../fields/range_slider/config.php:60
+msgid "Show Value"
+msgstr ""
+
+#: ../fields/range_slider/config.php:66
+msgid "Prefix"
+msgstr "接頭語"
+
+#: ../fields/range_slider/config.php:72
+msgid "Suffix"
+msgstr "接尾語"
+
+#: ../fields/recaptcha/config.php:2
+msgid "Public Key"
+msgstr "パブリックキー"
+
+#: ../fields/recaptcha/config.php:8
+msgid "Private Key"
+msgstr "プライベートキー"
+
+#: ../fields/recaptcha/config.php:14
+msgid "Theme"
+msgstr "テーマ"
+
+#: ../fields/recaptcha/config.php:17
+msgid "Red"
+msgstr ""
+
+#: ../fields/recaptcha/config.php:18
+msgid "White"
+msgstr ""
+
+#: ../fields/recaptcha/config.php:19
+msgid "Black"
+msgstr ""
+
+#: ../fields/recaptcha/config.php:20
+msgid "Clean"
+msgstr ""
+
+#: ../fields/recaptcha/config.php:22
+msgid ""
+"Theme changes not available in preview. Update form and reload to see new "
+"theme."
+msgstr "テーマの変更はプレビューできません。更新後再度ロードしてください。"
+
+#: ../fields/star-rate/config.php:2
+msgid "Number of Stars"
+msgstr "スターの数"
+
+#: ../fields/star-rate/config.php:8
+msgid "Star Type"
+msgstr ""
+
+#: ../fields/star-rate/config.php:11
+msgid "Star"
+msgstr "スター"
+
+#: ../fields/star-rate/config.php:12
+msgid "Heart"
+msgstr "ハート"
+
+#: ../fields/star-rate/config.php:13
+msgid "Face"
+msgstr "顔"
+
+#: ../fields/star-rate/config.php:14
+msgid "Dot"
+msgstr "ドット"
+
+#: ../fields/star-rate/config.php:19
+msgid "Star Size"
+msgstr "スターのサイズ"
+
+#: ../fields/star-rate/config.php:25
+msgid "Star Spacing"
+msgstr "スターの間隔"
+
+#: ../fields/star-rate/config.php:31
+msgid "Single Select"
+msgstr "1つ選択"
+
+#: ../fields/star-rate/config.php:38
+msgid "Star Color"
+msgstr "スターの色"
+
+#: ../fields/star-rate/config.php:44
+msgid "Track Color"
+msgstr "追跡の色"
+
+#: ../fields/star-rate/config.php:50
+msgid "Include Cancel"
+msgstr "キャンセルを含める"
+
+#: ../fields/text/config.php:15
+msgid "Masked Input"
+msgstr ""
+
+#: ../fields/text/config.php:17
+msgid "Enable input mask"
+msgstr ""
+
+#: ../fields/text/config.php:22
+msgid "Mask"
+msgstr ""
+
+#: ../fields/text/config.php:30
+msgid "numeric"
+msgstr ""
+
+#: ../fields/text/config.php:31
+msgid "alphabetical"
+msgstr ""
+
+#: ../fields/text/config.php:32
+msgid "alphanumeric"
+msgstr ""
+
+#: ../fields/text/config.php:33
+msgid "optional"
+msgstr ""
+
+#: ../fields/text/config.php:34
+msgid "length"
+msgstr ""
+
+#: ../fields/text/config.php:36
+msgid "Any length character only"
+msgstr ""
+
+#: ../fields/text/config.php:37
+msgid "Any length number only"
+msgstr ""
+
+#: ../fields/text/config.php:38
+msgid "email"
+msgstr ""
+
+#: ../fields/toggle_switch/config_template.php:2
+msgid "Orientation"
+msgstr ""
+
+#: ../fields/toggle_switch/config_template.php:5
+msgid "Horizontal"
+msgstr ""
+
+#: ../fields/toggle_switch/config_template.php:6
+msgid "Vertical"
+msgstr ""
+
+#: ../fields/toggle_switch/config_template.php:12
+msgid "Active Class"
+msgstr ""
+
+#: ../fields/toggle_switch/config_template.php:19
+msgid "Inactive Class"
+msgstr ""
+
+#: ../fields/toggle_switch/field.php:36 ../ui/edit.php:455 ../ui/edit.php:463
+#: ../ui/edit.php:496 ../ui/edit.php:503
+msgid "Enable"
+msgstr "有効化"
+
+#: ../includes/cf-ajax/plugin.php:14
+msgid "Ajax Submissions"
+msgstr "Ajax 送信"
+
+#: ../includes/cf-ajax/plugin.php:16
+msgid "Enable Ajax Submissions. (No page reloads)"
+msgstr "Ajax 送信を有効にする。(ページは再ロードされません)"
+
+#: ../includes/cf-ajax/plugin.php:70 ../includes/cf-ajax/plugin.php:81
+#: ../processors/redirect/config.php:10
+msgid "Redirecting"
+msgstr "リダイレクト中"
+
+#: ../includes/custom_field_class.php:21
+msgid "Custom Class"
+msgstr "カスタム クラス"
+
+#: ../includes/field_processors.php:22
+msgid "File type not allowed. Allowed types are: "
+msgstr "ファイルの種類に対応していません、使用可能なファイルの種類: "
+
+#: ../includes/field_processors.php:24
+msgid "File type needs to be"
+msgstr "対応しているファイルの種類は"
+
+#: ../processors/akismet/config.php:2 ../ui/edit.php:304
+#: ../ui/panels/variables.php:10
+msgid "Name"
+msgstr "名称"
+
+#: ../processors/akismet/config.php:8
+#, fuzzy
+msgid "Email"
+msgstr "フォームのメールアドレス"
+
+#: ../processors/akismet/config.php:14 ../processors/redirect/config.php:2
+msgid "URL"
+msgstr "URL"
+
+#: ../processors/akismet/config.php:27
+#, fuzzy
+msgid "Error Message"
+msgstr "メッセージ"
+
+#: ../processors/akismet/config.php:29
+msgid "Sorry, that looked very spammy, try rephrasing things"
+msgstr ""
+
+#: ../processors/auto_responder/config.php:2 ../ui/panels/emailer.php:42
+msgid "From Name"
+msgstr "フォーム名"
+
+#: ../processors/auto_responder/config.php:8 ../ui/panels/emailer.php:49
+msgid "From Email"
+msgstr "フォームのメールアドレス"
+
+#: ../processors/auto_responder/config.php:14 ../ui/panels/emailer.php:82
+msgid "Email Subject"
+msgstr "メールの件名"
+
+#: ../processors/auto_responder/config.php:20
+msgid "Recipient Name"
+msgstr "受信者名"
+
+#: ../processors/auto_responder/config.php:26
+msgid "Recipient Email"
+msgstr "受信者メールアドレス"
+
+#: ../processors/auto_responder/config.php:32
+msgid "Message"
+msgstr "メッセージ"
+
+#: ../processors/redirect/config.php:8
+#, fuzzy
+msgid "Redirect Message"
+msgstr "転送"
+
+#: ../processors/redirect/config.php:11
+msgid "Message text shown when redirecting in Ajax mode."
+msgstr ""
+
+#: ../ui/admin.php:26
+msgid "Create Form"
+msgstr "フォーム作成"
+
+#: ../ui/admin.php:38
+msgid "Create New Form"
+msgstr ""
+
+#: ../ui/admin.php:38
+msgid "New Form"
+msgstr "新規フォーム"
+
+#: ../ui/admin.php:41 ../ui/admin_templates.php:23
+msgid "Import Form"
+msgstr ""
+
+#: ../ui/admin.php:41
+msgid "Import"
+msgstr "インポート"
+
+#: ../ui/admin.php:47
+msgid "Front-end Style Includes"
+msgstr "フロントエンド スタイルに含まれる"
+
+#: ../ui/admin.php:51
+msgid "Includes Bootstrap 3 styles on the frontend for form alert notices"
+msgstr "フロントエンドのフォーム警告にBootstrap 3のスタイルを有効にする"
+
+#: ../ui/admin.php:51
+msgid "Alert"
+msgstr "警告"
+
+#: ../ui/admin.php:52
+msgid "Includes Bootstrap 3 styles on the frontend for form fields and buttons"
+msgstr ""
+"フロントエンドのフォーム フィールドとボタンでBootstrap 3スタイルを有効にする"
+
+#: ../ui/admin.php:53
+msgid "Includes Bootstrap 3 styles on the frontend for form grid layouts"
+msgstr "フロントエンドのフォーム グリッドでBootstrap 3スタイルを有効にする"
+
+#: ../ui/admin.php:53
+msgid "Grid"
+msgstr "グリッド"
+
+#: ../ui/admin.php:69 ../ui/admin.php:130
+msgid "Entries"
+msgstr "エントリー"
+
+#: ../ui/admin.php:83 ../ui/edit.php:456 ../ui/edit.php:464
+#: ../ui/panels/emailer.php:35
+msgid "Disabled"
+msgstr "無効"
+
+#: ../ui/admin.php:115 ../ui/entries.php:14
+msgid "Edit"
+msgstr ""
+
+#: ../ui/admin.php:131
+#, fuzzy
+msgid "Export"
+msgstr "インポート"
+
+#: ../ui/admin.php:132
+#, fuzzy
+msgid "Clone Form"
+msgstr "Caldera フォーム"
+
+#: ../ui/admin.php:132
+msgid "Clone"
+msgstr ""
+
+#: ../ui/admin.php:133
+msgid "This will delete this form permanently. Continue?"
+msgstr "継続してこのフォームを完全に削除しますか？"
+
+#: ../ui/admin.php:133
+msgid "Delete"
+msgstr ""
+
+#: ../ui/admin.php:153
+msgid "You don't have any forms."
+msgstr "フォームはありません,"
+
+#: ../ui/admin.php:184
+msgid "An form name is required"
+msgstr "フォーム名が必要です"
+
+#: ../ui/admin.php:211
+msgid ""
+"Looks like something is not working. Please try again a little later or post "
+"to the <a href=\"http://wordpress.org/support/plugin/caldera-forms\" target="
+"\"_blank\">support forum</a>."
+msgstr ""
+"予期せぬエラーが生じました。少し後にもう一度トライするか、<a href=\"http://"
+"wordpress.org/support/plugin/caldera-forms\" target=\"_blank\">サポートフォー"
+"ラム</a>に投稿してください。"
+
+#: ../ui/admin_templates.php:2 ../ui/admin_templates.php:7
+msgid "Bulk Actions"
+msgstr "バルクアクション"
+
+#: ../ui/admin_templates.php:3 ../ui/admin_templates.php:8
+msgid "Export Selected"
+msgstr ""
+
+#: ../ui/admin_templates.php:4
+msgid "Move to Trash"
+msgstr "ゴミ箱に移動"
+
+#: ../ui/admin_templates.php:10
+msgid "Delete Permanently"
+msgstr ""
+
+#: ../ui/admin_templates.php:18
+msgid "Import a Caldera Form from a .json export file."
+msgstr ".json エキスポート ファイルから Caldera フォームをインポートする "
+
+#: ../ui/admin_templates.php:20
+msgid "This will overwrite a form if it already exists."
+msgstr "この行為は既存のフォームを上書きします。"
+
+#: ../ui/admin_templates.php:35 ../ui/edit.php:439
+msgid "Form Name"
+msgstr "フォーム名"
+
+#: ../ui/admin_templates.php:41 ../ui/edit.php:332
+msgid "Description"
+msgstr "詳細"
+
+#: ../ui/admin_templates.php:60 ../ui/edit.php:297
+msgid "ID"
+msgstr "ID"
+
+#: ../ui/admin_templates.php:61 ../ui/admin_templates.php:109
+msgid "Submitted"
+msgstr "送信済"
+
+#: ../ui/admin_templates.php:82
+msgid "No entries found"
+msgstr ""
+
+#: ../ui/admin_templates.php:88
+msgid "No entries yet."
+msgstr "えんとりーはありません。"
+
+#: ../ui/admin_templates.php:115 ../ui/admin_templates.php:144
+msgid "Field"
+msgstr "フィールド"
+
+#: ../ui/edit.php:13
+msgid "Form has successfuly been submitted. Thank you."
+msgstr "フォームは送信いたしました。"
+
+#: ../ui/edit.php:49
+msgid "Auto Populate"
+msgstr "オートポピュレート"
+
+#: ../ui/edit.php:55
+msgid "Auto Type"
+msgstr ""
+
+#: ../ui/edit.php:58
+msgid "Select a source"
+msgstr ""
+
+#: ../ui/edit.php:59 ../ui/edit.php:82
+msgid "Post Type"
+msgstr ""
+
+#: ../ui/edit.php:60 ../ui/edit.php:66
+msgid "Taxonomy"
+msgstr "タクソノミー"
+
+#: ../ui/edit.php:100
+msgid "Add Option"
+msgstr "オプションの追加"
+
+#: ../ui/edit.php:101
+msgid "Bulk Insert"
+msgstr "バルク挿入"
+
+#: ../ui/edit.php:104
+msgid "Single option per line. These replace the current list."
+msgstr "1行につき1つ選択可能です。既存のリストと換地します。"
+
+#: ../ui/edit.php:105
+msgid "Insert Options"
+msgstr ""
+
+#: ../ui/edit.php:109
+msgid "No Default"
+msgstr "ディフォルト設定無し"
+
+#: ../ui/edit.php:110
+msgid "Show Values"
+msgstr ""
+
+#: ../ui/edit.php:114
+msgid "Label"
+msgstr ""
+
+#: ../ui/edit.php:273
+msgid "Elements"
+msgstr "構成要素"
+
+#: ../ui/edit.php:279
+msgid "Settings"
+msgstr ""
+
+#: ../ui/edit.php:280
+msgid "Conditions"
+msgstr ""
+
+#: ../ui/edit.php:287
+msgid "Element Type"
+msgstr "構成要素の種類"
+
+#: ../ui/edit.php:311
+msgid "Hide Label"
+msgstr "ラベルを隠す"
+
+#: ../ui/edit.php:318
+msgid "Slug"
+msgstr "スラグ"
+
+#: ../ui/edit.php:325
+msgid "Required"
+msgstr "必須"
+
+#: ../ui/edit.php:339
+msgid "Show in Entry List"
+msgstr "エントリーに含む"
+
+#: ../ui/edit.php:348
+msgid ""
+"Are you sure you want to remove this field?. 'Cancel' to stop. 'OK' to delete"
+msgstr ""
+"このフィールドを削除しますか？「キャンセル」を選択し中断するか、「OK」を選択"
+"し削除する。"
+
+#: ../ui/edit.php:348
+msgid "Delete Element"
+msgstr "構成要素を削除"
+
+#: ../ui/edit.php:354
+msgid "Show"
+msgstr "表示"
+
+#: ../ui/edit.php:355
+msgid "Hide"
+msgstr "隠す"
+
+#: ../ui/edit.php:356
+#, fuzzy
+msgid "Disable"
+msgstr "無効"
+
+#: ../ui/edit.php:358 ../ui/panels/processors.php:126
+msgid "Add Conditional Group"
+msgstr "条件グループを追加"
+
+#: ../ui/edit.php:428 ../ui/edit.php:437
+msgid "General Settings"
+msgstr "イパン設定"
+
+#: ../ui/edit.php:432
+msgid "Update Form"
+msgstr "フォームを更新"
+
+#: ../ui/edit.php:433
+msgid "Preview Form"
+msgstr ""
+
+#: ../ui/edit.php:446
+msgid "Form Description"
+msgstr "フォームの詳細"
+
+#: ../ui/edit.php:453
+msgid "Capture Entries"
+msgstr ""
+
+#: ../ui/edit.php:461
+msgid "Pin to Menu"
+msgstr "メニューにピン止めする"
+
+#: ../ui/edit.php:470
+msgid "View Entries"
+msgstr "エントリーを表示"
+
+#: ../ui/edit.php:472
+msgid "All"
+msgstr ""
+
+#: ../ui/edit.php:494
+msgid "Hide Form"
+msgstr ""
+
+#: ../ui/edit.php:496
+msgid "Hide form after successful submission"
+msgstr "送信の性交後フォームを非表示にする"
+
+#: ../ui/edit.php:501
+msgid "Honeypot"
+msgstr ""
+
+#: ../ui/edit.php:503
+msgid "Place an invisible field to trick spambots"
+msgstr ""
+
+#: ../ui/edit.php:508
+msgid "Success Message"
+msgstr "成功時のメッセージ"
+
+#: ../ui/edit.php:514
+msgid "Gravatar Field"
+msgstr "Gravatar 用フィールド"
+
+#: ../ui/edit.php:521
+msgid "Used when viewing an entry from a non-logged in user."
+msgstr "ログインしていないユーザーのエントリーの表示に使用"
+
+#: ../ui/edit.php:595
+msgid "Add New"
+msgstr "新規追加"
+
+#: ../ui/edit.php:749
+msgid "Set Element"
+msgstr "構成要素を確定"
+
+#: ../ui/edit.php:752
+msgid "No description given"
+msgstr "詳細無し"
+
+#: ../ui/edit.php:814
+msgid "or"
+msgstr "あるいは"
+
+#: ../ui/edit.php:823 ../ui/edit.php:846
+msgid "is"
+msgstr "が"
+
+#: ../ui/edit.php:824 ../ui/edit.php:847
+msgid "is not"
+msgstr "一致しない"
+
+#: ../ui/edit.php:825 ../ui/edit.php:848
+msgid "is greater than"
+msgstr "より大きいい"
+
+#: ../ui/edit.php:826 ../ui/edit.php:849
+msgid "is less than"
+msgstr "以下"
+
+#: ../ui/edit.php:827 ../ui/edit.php:850
+msgid "starts with"
+msgstr "接頭文字列"
+
+#: ../ui/edit.php:828 ../ui/edit.php:851
+msgid "ends with"
+msgstr "末尾文字列"
+
+#: ../ui/edit.php:829 ../ui/edit.php:852
+msgid "contains"
+msgstr "を含む"
+
+#: ../ui/edit.php:831 ../ui/edit.php:854
+msgid "Select field first"
+msgstr "フィールドを先に選択してください"
+
+#: ../ui/edit.php:836
+msgid "Add Condition"
+msgstr "条件を追加"
+
+#: ../ui/edit.php:842
+msgid "and"
+msgstr "および"
+
+#: ../ui/entries_toolbar.php:15
+msgid "Active"
+msgstr ""
+
+#: ../ui/entries_toolbar.php:31
+msgid "Export Entries"
+msgstr "エントリーのエクスポート"
+
+#: ../ui/entries_toolbar.php:35
+msgid "Apply"
+msgstr "適応する"
+
+#: ../ui/entry_navigation.php:23
+msgid "item"
+msgstr ""
+
+#: ../ui/entry_navigation.php:23
+msgid "items"
+msgstr ""
+
+#: ../ui/extend.php:23
+msgid "No licensed addons installed."
+msgstr "ライセンスされたアドオンはありません。"
+
+#: ../ui/extend.php:62
+msgid "Already Installed"
+msgstr "既にインストール済み"
+
+#: ../ui/insert_shortcode.php:5
+msgid "Insert Caldera Form"
+msgstr "Caldera フォームを挿入"
+
+#: ../ui/insert_shortcode.php:24
+msgid "You don't have any forms to insert."
+msgstr "挿入できるフォームがありません。"
+
+#: ../ui/insert_shortcode.php:32
+msgid "Insert Form"
+msgstr "フォーム挿入"
+
+#: ../ui/insert_shortcode.php:34
+msgid "Close"
+msgstr "閉じる"
+
+#: ../ui/news_templates.php:21
+msgid "Unable to connect or no extensions available."
+msgstr "接続に問題があるか、エクステンションがありません。"
+
+#: ../ui/panels/emailer.php:36
+msgid "Enabled"
+msgstr "有効"
+
+#: ../ui/panels/emailer.php:45 ../ui/panels/emailer.php:52
+#: ../ui/panels/emailer.php:85
+msgid "Use %field_slug% to use a value from the form"
+msgstr "フォームからの値を使用するために %field_slug% を使う"
+
+#: ../ui/panels/emailer.php:56
+msgid "Email Type"
+msgstr "メールのタイプ"
+
+#: ../ui/panels/emailer.php:65
+msgid "CSV Include"
+msgstr "CSV を含む"
+
+#: ../ui/panels/emailer.php:67
+msgid "Attach a CSV version of the submission"
+msgstr "CSV バージョンを添付する"
+
+#: ../ui/panels/emailer.php:73
+msgid "Recipients"
+msgstr "受信者"
+
+#: ../ui/panels/emailer.php:76
+msgid "Comma separated list of email addresses."
+msgstr "コンマ区切りのメールアドレスのリスト"
+
+#: ../ui/panels/emailer.php:89
+msgid "Email Message"
+msgstr "メールのメッセージ"
+
+#: ../ui/panels/emailer.php:92
+msgid ""
+"Magic tags, %field_slug% are replaced with submitted data. use {summary} to "
+"build an automatic mail based on form content. Leaving the mailer blank, "
+"will create and automatic summary."
+msgstr ""
+"マジックタグと %field_slug% は、送信されたデータと換地されます。フォームの内"
+"容にもとづいてメールを自動的に構築するためには {summary} を使用してください。"
+"メイラーがブランクの状態の時は自動的にサマリーが作成されます。"
+
+#: ../ui/panels/emailer.php:98
+msgid ""
+"Please add a \"Button\" element and set it to \"Submit\" if you want to have "
+"the form submittable."
+msgstr " \"ボタン\" を追加し、 \"Submit\"を適応してフォームを利用可能にする。"
+
+#: ../ui/panels/layout.php:13
+msgid "This will remove all the fields in this row. Are you sure?"
+msgstr "指定した列にあるすべてのフィールドが削除されます。よろしいですか？"
+
+#: ../ui/panels/layout.php:14 ../ui/panels/layout.php:18
+#: ../ui/panels/layout.php:22 ../ui/panels/layout.php:108
+#: ../ui/panels/layout_add_row.php:4 ../ui/panels/pages.php:13
+msgid "Page"
+msgstr "ページ"
+
+#: ../ui/panels/layout_add_row.php:1
+msgid "Add Row"
+msgstr "行を追加"
+
+#: ../ui/panels/layout_add_row.php:11
+msgid "Add Page"
+msgstr ""
+
+#: ../ui/panels/layout_add_row.php:12
+msgid "Drag onto the form grid below"
+msgstr "フォームのグリッド上にどドラッグしてください"
+
+#: ../ui/panels/layout_add_row.php:15
+msgid "Add Element"
+msgstr "項目を追加"
+
+#: ../ui/panels/pages.php:2
+msgid "Progress Bar"
+msgstr "進行状況バー"
+
+#: ../ui/panels/pages.php:4
+msgid "Show Breadcrumbs"
+msgstr "Breadcrumbs を表示する"
+
+#: ../ui/panels/pages.php:5
+msgid "ProTip: Use an HTML element to build a custom progress per page"
+msgstr ""
+"上級者向けヒント: HTML 要素を使用してページごとにカスタム進行状況を作成"
+
+#: ../ui/panels/processors.php:22 ../ui/panels/processors.php:47
+#: ../ui/panels/processors.php:100
+msgid "New Form Processor"
+msgstr "新規フォーム プロセッサー"
+
+#: ../ui/panels/processors.php:103
+msgid "Processor Type"
+msgstr "プロセッサーの種類"
+
+#: ../ui/panels/processors.php:117
+msgid "Are you sure you want to remove this processor?"
+msgstr "指定したプロセッサーを削除しますか？"
+
+#: ../ui/panels/processors.php:117
+msgid "Remove Processor"
+msgstr "プロセッサーを削除"
+
+#: ../ui/panels/processors.php:123
+msgid "Use"
+msgstr "使用する"
+
+#: ../ui/panels/processors.php:124
+msgid "Don't Use"
+msgstr "使用しない"
+
+#: ../ui/panels/processors.php:170
+msgid "Add Processor"
+msgstr "プロセッサーを追加"
+
+#: ../ui/panels/processors.php:220
+msgid "Use Processor"
+msgstr "プロセッサーを使用"
+
+#: ../ui/panels/processors.php:225
+msgid "by"
+msgstr "による"
+
+#: ../ui/panels/processors.php:283
+msgid "This processor has no configurable options."
+msgstr ""
+
+#: ../ui/panels/variable_add.php:1
+msgid "Add Variable"
+msgstr "変数を追加"
+
+#: ../ui/panels/variables.php:14
+msgid "Behaviour"
+msgstr "動作"
+
+#: ../ui/panels/variables.php:16
+msgid "No variables defined"
+msgstr "変数が定義されていません"
+
+#: ../ui/panels/variables.php:29 ../ui/panels/variables.php:47
+msgid "Static"
+msgstr "スタティック"
+
+#: ../ui/panels/variables.php:30 ../ui/panels/variables.php:48
+msgid "Passback"
+msgstr "パスバック"
+
+#~ msgid "The reCAPTCHA field is required."
+#~ msgstr "reCAPTCHA を入力ください。"
+
+#~ msgid "Validate"
+#~ msgstr "検証する"
+
+#~ msgid "The license key has expired!"
+#~ msgstr "ライセンスキーが無効です！"
+
+#~ msgid "An error occurred while trying to validate your license key"
+#~ msgstr "ライセンスキーが検証できません"
+
+#~ msgid "The response code of [%s] was not expected"
+#~ msgstr "返信コード [%s] は間違っています"
+
+#~ msgid "The validation request was invalid"
+#~ msgstr "検証できませんでした。"
+
+#~ msgid "The validation NONCE could not be validated!"
+#~ msgstr "認証 NONCE ができませんでした。"
+
+#~ msgid ""
+#~ "An unknown error occurred while getting info for the plugin %s. Response: "
+#~ "%s"
+#~ msgstr ""
+#~ " %s プラグインのための情報を取得する際に予期せぬエラーが生じました。 応"
+#~ "答: %s "
+
+#~ msgid "An unknown error occurred while getting info for the plugin %"
+#~ msgstr " % プラグインのための情報を取得する際に予期せぬエラーが生じました。"
+
+#, fuzzy
+#~ msgid "Caldera Forms - Extend"
+#~ msgstr "Caldera フォーム"
+
+#~ msgid "entry"
+#~ msgstr "エントリー"
+
+#, fuzzy
+#~ msgid "Special,Math"
+#~ msgstr "スペシャル"
+
+#, fuzzy
+#~ msgid "Text Fields,Basic,User"
+#~ msgstr "テキスト入力、ベーシック"
+
+#~ msgid "Text Fields,Basic"
+#~ msgstr "テキスト入力、ベーシック"
+
+#~ msgid "Basic,File"
+#~ msgstr "ベーシック ファイル"
+
+#~ msgid "Select Options,Special"
+#~ msgstr "選択オプション、スペシャル"
+
+#~ msgid "Text Fields,Pickers"
+#~ msgstr "テキスト入力、ピッカー"
+
+#~ msgid "Magic tags, %field_slug% are replaced with submitted data."
+#~ msgstr "%field_slug% 等の「マジック タグ」は変換されます。"
