@@ -813,7 +813,7 @@ class Caldera_Forms {
 			}
 		}
 		// set header
-		$headers = 'From: ' . $config['sender_name'] . ' <' . $config['sender_email'] . '>' . "\r\n";
+		$headers[] = 'From: ' . $config['sender_name'] . ' <' . $config['sender_email'] . '>';
 
 		$message = self::do_magic_tags( $message );
 
@@ -833,9 +833,8 @@ class Caldera_Forms {
 		$email_message = apply_filters( 'caldera_forms_autoresponse_mail', $email_message, $config, $form);	
 		do_action( 'caldera_forms_do_autoresponse', $config, $form);
 
-		if ( is_string( $message ) ) {
-			wp_mail( $config['recipient_name'] . ' <' . $config['recipient_email'] . '>', $subject, $message, $headers );
-		}
+		// send mail		
+		wp_mail( $email_message['recipients'], $email_message['subject'], implode( "\r\n", (array) $email_message['message'] ), implode("\r\n", (array) $email_message['headers']), $email_message['attachments'] );
 		
 	}
 
@@ -1390,7 +1389,22 @@ class Caldera_Forms {
 				"styles"	=>	array(
 					//CFCORE_URL . "fields/color_picker/minicolors.css"
 				)
-			)
+			),
+			'states' => array(
+				"field"		=>	__("State/ Province Select", "caldera-forms"),
+				"description" => __('Dropdown select for US states and Canadian provinces.', 'caldera-forms'),
+				"file"		=>	CFCORE_PATH . "fields/states/field.php",
+				"category"	=>	__("Select Options", "caldera-forms").', '.__("Basic", "caldera-forms"),
+				"placeholder" => false,
+				//"viewer"	=>	array($this, 'filter_options_calculator'),
+				"setup"		=>	array(
+					"template"	=>	CFCORE_PATH . "fields/states/config_template.php",
+					"preview"	=>	CFCORE_PATH . "fields/states/preview.php",
+					"default"	=> array(
+
+					),
+				)
+			),
 		);
 		
 		return array_merge( $fields, $internal_fields );
@@ -1788,7 +1802,7 @@ class Caldera_Forms {
 							}
 							break;
 						case 'date':
-							$magic_tag = date($magic[1]);
+							$magic_tag = get_date_from_gmt(date('Y-m-d H:i:s'), $magic[1]);
 							break;
 						case 'user':
 							if(is_user_logged_in()){
@@ -1873,11 +1887,23 @@ class Caldera_Forms {
 							}
 							break;
 						case 'entry_token':
-							$magic_tag = $magic_tag = self::get_field_data('_entry_token', $form);
+							$magic_tag = self::get_field_data('_entry_token', $form);
 							break;
 						case 'ip':
-							$magic_tag = $_POST[ $magic[1] ]( $_SERVER['REMOTE_ADDR'] );
+
+							$ip = $_SERVER['REMOTE_ADDR'];
+							if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+								$ip = $_SERVER['HTTP_CLIENT_IP'];
+							} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+							}							
+							
+							$magic_tag = $ip;
+							
 							break;
+						case 'ua':
+							$magic_tag = $_SERVER['HTTP_USER_AGENT'];
+							break;	
 						case 'summary':
 							if(!empty($form['fields'])){
 								$out = array();
@@ -3098,10 +3124,7 @@ class Caldera_Forms {
 				}
 			}
 		}
-		// if depts been set- scripts are used - 
-		//wp_enqueue_script( 'cf-frontend-script-init', CFCORE_URL . 'assets/js/frontend-script-init.js', array('jquery'), self::VERSION, true);
-		wp_enqueue_script( 'cf-frontend-script-init', CFCORE_URL . 'assets/js/frontend-script-init.min.js', array('jquery'), self::VERSION, true);
-		wp_enqueue_script( 'cf-frontend-fields', CFCORE_URL . 'assets/js/fields.min.js', array('jquery'), self::VERSION );
+
 		// field styles
 		wp_enqueue_style( 'cf-frontend-field-styles', CFCORE_URL . 'assets/css/fields.min.css', array(), self::VERSION );
 
@@ -3175,7 +3198,7 @@ class Caldera_Forms {
 								}
 
 								// if depts been set- scripts are used - 
-								wp_enqueue_script( 'cf-frontend-script-init', CFCORE_URL . 'assets/js/frontend-script-init.js', array('jquery'), self::VERSION, true);
+								//wp_enqueue_script( 'cf-frontend-script-init', CFCORE_URL . 'assets/js/frontend-script-init.min.js', array('jquery'), self::VERSION, true);
 
 								if(isset($form['settings']['styles']['use_grid'])){
 									if($form['settings']['styles']['use_grid'] === 'yes'){
@@ -3301,7 +3324,7 @@ class Caldera_Forms {
 		$timeformat = get_option( 'time_format' );
 		$gmt_offset = get_option( 'gmt_offset' );
 		$entry_detail = self::get_entry_detail($entry_id, $form);
-		$data['date'] = date_i18n( $dateformat.' '.$timeformat, strtotime($entry_detail['datestamp']), $gmt_offset);
+		$data['date'] = date_i18n( $dateformat.' '.$timeformat, get_date_from_gmt( $entry_detail['datestamp'], 'U'));
 
 		if(!empty($entry_detail['meta'])){
 			$data['meta'] = $entry_detail['meta'];
@@ -4033,6 +4056,10 @@ class Caldera_Forms {
 		}
 		
 		do_action('caldera_forms_render_end', $form);
+
+		wp_enqueue_script( 'cf-frontend-script-init', CFCORE_URL . 'assets/js/frontend-script-init.min.js', array('jquery'), self::VERSION, true);
+		wp_enqueue_script( 'cf-frontend-fields', CFCORE_URL . 'assets/js/fields.min.js', array('jquery'), self::VERSION );
+
 
 		return apply_filters( 'caldera_forms_render_form', $out, $form);
 

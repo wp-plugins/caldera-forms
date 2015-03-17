@@ -1,5 +1,5 @@
 <?php echo $wrapper_before; ?>
-<?php /*echo $field_label;*/ ?>
+<?php echo $field_label; ?>
 <?php if(false !== strpos($field_input_class, 'has-error')){
 	echo '<span class="has-error">';
 		echo $field_caption;
