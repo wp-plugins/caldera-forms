@@ -53,6 +53,14 @@ if(!isset($element['mailer']['enable_mailer'])){
 			</div>
 		</div>
 		<div class="caldera-config-group">
+			<label><?php echo __('Reply To Email', 'caldera-forms'); ?> </label>
+			<div class="caldera-config-field">
+				<input type="text" class="field-config magic-tag-enabled" name="config[mailer][reply_to]" value="<?php if(isset( $element['mailer']['reply_to'] ) ){ echo $element['mailer']['reply_to']; } ?>" style="width:400px;">
+				<p class="description"><?php echo __('Use %field_slug% to use a value from the form', 'caldera-forms'); ?></p>
+			</div>
+		</div>
+
+		<div class="caldera-config-group">
 			<label><?php echo __('Email Type', 'caldera-forms'); ?> </label>
 			<div class="caldera-config-field">
 				<select class="field-config" name="config[mailer][email_type]">
@@ -77,6 +85,13 @@ if(!isset($element['mailer']['enable_mailer'])){
 			</div>
 
 		</div>
+		<div class="caldera-config-group">
+			<label><?php echo __('BCC', 'caldera-forms'); ?> </label>
+			<div class="caldera-config-field">
+				<input type="text" class="field-config magic-tag-enabled" name="config[mailer][bcc_to]" value="<?php if(isset( $element['mailer']['bcc_to'] ) ){ echo $element['mailer']['bcc_to']; } ?>" style="width:400px;">
+				<p class="description"><?php echo __('Comma separated list of email addresses. Use %field_slug% to use a value from the form.', 'caldera-forms'); ?></p>
+			</div>
+		</div>
 
 		<div class="caldera-config-group">
 			<label><?php echo __('Email Subject', 'caldera-forms'); ?> </label>
@@ -92,6 +107,16 @@ if(!isset($element['mailer']['enable_mailer'])){
 				<p class="description"><?php echo __('Magic tags, %field_slug% are replaced with submitted data. use {summary} to build an automatic mail based on form content. Leaving the mailer blank, will create and automatic summary.', 'caldera-forms'); ?></p>
 			</div>
 		</div>
+
+
+		<div class="caldera-config-group">
+			<label><?php echo __('Debug Mailer', 'caldera-forms'); ?></label>
+			<div class="caldera-config-field">
+				<label><input type="checkbox" value="1" name="config[debug_mailer]" class="field-config"<?php if(isset($element['debug_mailer'])){ echo ' checked="checked"'; } ?>> <?php echo __('Enable email send transation log', 'caldera-forms'); ?></label>
+				<p class="description"><?php echo __('If set, entries will have a "Mailer Debug" meta tab to see the transaction long. Do not keep this enabled on production as it sends two emails for tracking.', 'caldera-forms'); ?></p>
+			</div>
+		</div>
+
 	</div>
 </div>
 <div class="mailer-errors" style="display:none;">

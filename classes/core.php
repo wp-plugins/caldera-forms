@@ -48,10 +48,11 @@ class Caldera_Forms {
 		add_filter('caldera_forms_get_form_processors', array( $this, 'get_form_processors'));
 		add_filter('caldera_forms_submit_redirect_complete', array( $this, 'do_redirect'),10, 4);
 		add_action('caldera_forms_edit_end', array($this, 'calculations_templates') );
-		add_filter('caldera_forms_render_get_field_type-radio', array( $this, 'auto_populate_options_field' ), 10, 2);
-		add_filter('caldera_forms_render_get_field_type-checkbox', array( $this, 'auto_populate_options_field' ), 10, 2);
-		add_filter('caldera_forms_render_get_field_type-dropdown', array( $this, 'auto_populate_options_field' ), 10, 2);
-		add_filter('caldera_forms_render_get_field_type-toggle_switch', array( $this, 'auto_populate_options_field' ), 10, 2);
+		add_filter('caldera_forms_render_get_field', array( $this, 'auto_populate_options_field' ), 10, 2);
+		//add_filter('caldera_forms_render_get_field_type-radio', array( $this, 'auto_populate_options_field' ), 10, 2);
+		//add_filter('caldera_forms_render_get_field_type-checkbox', array( $this, 'auto_populate_options_field' ), 10, 2);
+		//add_filter('caldera_forms_render_get_field_type-dropdown', array( $this, 'auto_populate_options_field' ), 10, 2);
+		//add_filter('caldera_forms_render_get_field_type-toggle_switch', array( $this, 'auto_populate_options_field' ), 10, 2);
 		add_filter('caldera_forms_view_field_paragraph', 'wpautop' );
 
 		// magic tags
@@ -392,7 +393,7 @@ class Caldera_Forms {
 	}
 
 	public static function save_final_form($form){
-		global $wpdb, $processed_meta;
+		global $wpdb, $processed_meta, $transdata;
 
 		// check submit type (new or update)
 		if(isset($_POST['_cf_frm_edt'])){
@@ -537,6 +538,9 @@ class Caldera_Forms {
 			return;
 		}
 
+		// add entry ID to transient data
+		$transdata['entry_id'] = $entryid;
+
 		// do mailer!
 		$sendername = __('Caldera Forms Notification', 'caldera-forms');
 		if(!empty($form['mailer']['sender_name'])){
@@ -569,10 +573,22 @@ class Caldera_Forms {
 			'subject'	=> self::do_magic_tags($form['mailer']['email_subject']),
 			'message'	=> stripslashes( $form['mailer']['email_message'] ) ."\r\n",
 			'headers'	=>	array(
-				self::do_magic_tags( 'From: ' . $sendername . ' <' . $sendermail . '>' )
+				self::do_magic_tags( 'From: ' . $sendername . ' <' . $sendermail . '>' ),
 			),
 			'attachments' => array()
 		);
+
+		// if added a bcc
+		$bcc_to = trim( $form['mailer']['bcc_to'] );
+		if( !empty( $bcc_to ) ){
+			$mail['headers'][] = self::do_magic_tags( 'Bcc: ' . $bcc_to );
+		}
+
+		// if added a replyto
+		$reply_to = trim( $form['mailer']['reply_to'] );
+		if( !empty( $reply_to ) ){
+			$mail['headers'][] = self::do_magic_tags( 'Reply-To: <' . $reply_to . '>' );
+		}		
 
 		// Filter Mailer first as not to have user input be filtered
 		$mail['message'] = self::do_magic_tags($mail['message']);
@@ -713,8 +729,14 @@ class Caldera_Forms {
 		}
 
 		if( ! empty( $mail ) ){
+			
+			// is send debug enabled?
+			if( !empty( $form['debug_mailer'] ) ){
+				add_action( 'phpmailer_init', array( 'Caldera_Forms', 'debug_mail_send' ), 1000 );
+			}
 
-			if(wp_mail( (array) $mail['recipients'], $mail['subject'], $mail['message'], $headers, $mail['attachments'] )){
+			if( wp_mail( (array) $mail['recipients'], $mail['subject'], stripslashes( $mail['message'] ), $headers, $mail['attachments'] )){
+
 				// kill attachment.
 				if(!empty($csvfile['file'])){
 					if(file_exists($csvfile['file'])){
@@ -731,7 +753,38 @@ class Caldera_Forms {
 		}
 
 	}
+	/**
+	 * creates a send log to debug mailer problems
+	 *
+	 */
+	public static function debug_mail_send( $phpmailer ) {
+		global $transdata, $wpdb;
 
+		// this is a hack since there is not filter / action for a failed mail... yet
+		//$phpmailer->SMTPDebug = 3;
+		ob_start();
+			$phpmailer->SMTPDebug = 3;
+			try {
+				$phpmailer->Send();
+			} catch ( phpmailerException $e ) {
+				print_r( $phpmailer->ErrorInfo );
+			}
+			print_r( $phpmailer );
+			$phpmailer->SMTPDebug = 0;
+		$result = ob_get_clean();
+
+		$meta_entry = array(
+			'entry_id'	 =>	$transdata['entry_id'],
+			'process_id' => '_debug_log',
+			'meta_key'	 =>	'debug_log',
+			'meta_value' =>	$result
+		);
+
+		$wpdb->insert($wpdb->prefix . 'cf_form_entry_meta', $meta_entry);		
+
+
+
+	}
 	/**
 	 * Return an instance of this class.
 	 *
@@ -866,6 +919,17 @@ class Caldera_Forms {
 				"description"		=>	__("Redirects user to URL on successful submit", 'caldera-forms'),
 				"template"			=>	CFCORE_PATH . "processors/redirect/config.php",
 				"single"			=>	false
+			),
+			'increment_capture' => array(
+				"name"              =>  __('Increment Value', 'caldera-forms'),
+				"description"       =>  __("Increment a value per entry.", 'caldera-forms'),
+				"processor"     	=>  array( $this, 'increment_value' ),
+				"template"          =>  CFCORE_PATH . "processors/increment/config.php",
+				"single"			=>	true,
+				"conditionals"		=>	false,
+				"magic_tags"    =>  array(
+					'increment_value'
+				)
 			)
 		);
 		// akismet 
@@ -883,6 +947,23 @@ class Caldera_Forms {
 		return array_merge( $processors, $internal_processors );
 
 	}
+
+	// incremenet value process
+	public function increment_value( $config, $form ){
+
+		// get increment value;
+		$increment_value = get_option('_increment_' . $config['processor_id'], $config['start'] );
+		
+		update_option( '_increment_' . $config['processor_id'], $increment_value + 1 );
+		
+		if( !empty( $config['field'] ) ){
+			self::set_field_data( $config['field'], $increment_value, $form );
+		}
+
+		return array('increment_value' => $increment_value );
+
+	}
+
 
 	static public function akismet_scanner($config, $form){
 		global $post;
@@ -2211,7 +2292,13 @@ class Caldera_Forms {
 									$field['config']['option'][$option_id]['value'] = $field['config']['option'][$option_id]['label'];
 								}
 								$out[] = self::do_magic_tags($field['config']['option'][$option_id]['value']);
+							}elseif( isset($field['config']['option'][$option] ) ){
+								if(!isset($field['config']['option'][$option]['value'])){
+									$field['config']['option'][$option]['value'] = $field['config']['option'][$option]['label'];
+								}
+								$out[] = self::do_magic_tags($field['config']['option'][$option]['value']);
 							}
+
 						}
 						$processed_data[$indexkey][$field_id] = $out;
 					}else{
@@ -2294,20 +2381,36 @@ class Caldera_Forms {
 		$entry_meta = array();
 
 		$entry_meta_data = $wpdb->get_results($wpdb->prepare("SELECT * FROM `" . $wpdb->prefix ."cf_form_entry_meta` WHERE `entry_id` = %d", $entry_id), ARRAY_A);
+
 		if(!empty($entry_meta_data)){
 			$processors = apply_filters( 'caldera_forms_get_form_processors', array() );							
 			foreach($entry_meta_data as $meta_index=>$meta){
+
 				// is json?
-				if( false !== strpos($meta['meta_value'], '{') || false !== strpos($meta['meta_value'], '[') ){
-					$meta['meta_value'] = json_decode($meta['meta_value'], ARRAY_A);
-				}else{
-					$meta['meta_value'] = $meta['meta_value'];
+				$is_json = @json_decode($meta['meta_value'], ARRAY_A);
+				if( !empty( $is_json ) ){
+					$meta['meta_value'] = $is_json;
 				}
 
 				$group = 'meta';
 				$meta = apply_filters( 'caldera_forms_get_entry_meta', $meta, $form);
 
-				if(isset($form['processors'][$meta['process_id']])){
+				if( isset( $form['processors'][$meta['process_id']] ) || $meta['process_id'] == '_debug_log' ){
+
+					if( $meta['process_id'] == '_debug_log' ){
+						$meta['meta_value'] = '<pre>' . $meta['meta_value'] . '</pre>';
+						$entry_meta['debug'] = array(
+							'name' => __('Mailer Debug', 'caldera-forms'),
+							'data' => array(
+								'_debug_log' => array(
+									'entry' => array(
+										'log' => $meta
+									)
+								)
+							)
+						);
+						continue;
+					}
 
 					$process_config = array();
 					if(isset($form['processors'][$meta['process_id']]['config'])){
@@ -2330,7 +2433,12 @@ class Caldera_Forms {
 							if(isset($form['processors'][$meta['process_id']]['type'])){
 								$meta_name = $processors[$form['processors'][$meta['process_id']]['type']]['name'];
 							}else{
-								$meta_name = $meta['process_id'];
+								if( $meta['process_id'] == '_debug_log' ){
+									$meta_name = __('Mailer Debug', 'caldera-forms');
+								}else{
+									$meta_name = $meta['process_id'];	
+								}
+								
 							}
 							$entry_meta[$group] = array(
 								'name' => $meta_name,
@@ -2398,6 +2506,8 @@ class Caldera_Forms {
 		if(isset($processed_data[$indexkey])){
 			return $processed_data[$indexkey];
 		}
+		// prep data array
+		$processed_data[$indexkey] = array();
 
 		// initialize process data
 		foreach($form['fields'] as $field_id=>$field){
@@ -3906,6 +4016,11 @@ class Caldera_Forms {
 		$out = "<div class=\"" . implode(' ', $form_wrapper_classes) . "\" id=\"caldera_form_" . $current_form_count ."\">\r\n";
 
 		$notices = apply_filters( 'caldera_forms_render_notices', $notices, $form);
+
+		// set debug notice
+		if( !empty( $form['mailer']['enable_mailer'] ) && !empty( $form['debug_mailer'] ) ){
+			$notices['error'] = array( 'note' => __('WARNING: Form is in Mailer Debug mode. Disable before going live.', 'caldera-forms') );
+		}
 
 		$out .= '<div id="caldera_notices_'.$current_form_count.'" data-spinner="'. admin_url( 'images/spinner.gif' ).'">';
 		if(!empty($notices)){

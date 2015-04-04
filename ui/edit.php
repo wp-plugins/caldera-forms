@@ -10,12 +10,17 @@ $magic_tags = apply_filters( 'caldera_forms_get_magic_tags', array());
 
 //dump($element);
 if(empty($element['success'])){
-	$element['success'] = __('Form has successfuly been submitted. Thank you.', 'caldera-forms');
+	$element['success'] = __('Form has successfully been submitted. Thank you.', 'caldera-forms');
 }
 
 if(!isset($element['db_support'])){
 	$element['db_support'] = 1;
 }
+// I should really makea defaults array.. sigh. It grew so fast.
+if(!isset($element['check_honey'])){
+	$element['check_honey'] = 1;
+}
+
 
 // place nonce field
 wp_nonce_field( 'cf_edit_element', 'cf_edit_nonce' );
@@ -362,7 +367,7 @@ function field_wrapper_template($id = '{{id}}', $label = '{{label}}', $slug = '{
 			</div>
 			<input type="hidden" class="field_config_string block-input" value="<?php echo htmlentities( $config_str ); ?>">
 			<br>
-			<button class="button button-primary delete-field block-button" data-confirm="<?php echo __('Are you sure you want to remove this field?. \'Cancel\' to stop. \'OK\' to delete', 'caldera-forms'); ?>" type="button"><i class="icn-delete"></i> <?php echo __('Delete Element', 'caldera-forms'); ?></button>
+			<button class="button delete-field block-button" data-confirm="<?php echo __('Are you sure you want to remove this field?. \'Cancel\' to stop. \'OK\' to delete', 'caldera-forms'); ?>" type="button"><i class="icn-delete"></i> <?php echo __('Delete Element', 'caldera-forms'); ?></button>
 		</div>
 		<div id="<?php echo $id; ?>_conditions_pane" style="display:none;" class="wrapper-instance-pane">
 			<p>
@@ -524,7 +529,7 @@ function field_line_template($id = '{{id}}', $label = '{{label}}', $group = '{{g
 	<div class="caldera-config-group" style="width:500px;">
 		<label><?php echo __('Success Message', 'caldera-forms'); ?> </label>
 		<div class="caldera-config-field">
-			<input type="text" class="field-config block-input magic-tag-enabled required" name="config[success]" value="<?php echo esc_html( $element['success'] ); ?>" required="required">
+			<textarea class="field-config block-input magic-tag-enabled required" name="config[success]" required="required"><?php echo esc_html( $element['success'] ); ?></textarea>
 		</div>
 	</div>
 	<div class="caldera-config-group">
