@@ -52,10 +52,10 @@ foreach($form['fields'] as $fid=>$cfg){
 	if(false !== strpos($formula, $fid)){
 		//dump($cfg,0);
 		$formula = str_replace($fid, $fid.'_'.$current_form_count, $formula);
-		$binds_vars[] = $fid.'_'.$current_form_count." = parseFloat( $('[data-field=\"".$fid.'_'.$current_form_count."\"]').is(':checkbox') ? checked_total_" . $field_base_id. "($('[data-field=\"".$fid.'_'.$current_form_count."\"]:checked')) : $('[data-field=\"".$fid.'_'.$current_form_count."\"]').is(':radio') ? $('[data-field=\"".$fid.'_'.$current_form_count."\"]:checked').val() : $('[data-field=\"".$fid.'_'.$current_form_count."\"]').val() ) || 0 ";
+		$binds_vars[] = $fid.'_'.$current_form_count." = parseFloat( $('[data-field=\"".$fid.'_'.$current_form_count."\"]').is(':checkbox') ? checked_total_" . $field_base_id. "($('[data-field=\"".$fid.'_'.$current_form_count."\"]:checked')) : $('[data-field=\"".$fid.'_'.$current_form_count."\"]').is(':radio') ? $('[data-field=\"".$fid.'_'.$current_form_count."\"]:checked').val().split(',').join('') : $('[data-field=\"".$fid.'_'.$current_form_count."\"]').val().split(',').join('') ) || 0 ";
 		$binds[] = "[data-field=\"".$fid.'_'.$current_form_count."\"]";
 		// include a conditional wrapper
-		$binds_wrap[] = "#conditional_".$fid.'_'.$current_form_count;
+		$binds_wrap[] = "#conditional_".$fid.'_'.$current_form_count;		
 	}
 }
 
@@ -66,23 +66,37 @@ if(!empty($binds)){
 ?>
 <script type="text/javascript">
 	jQuery(function($){
+
 		function checked_total_<?php echo $field_base_id; ?>(items){
 			var sum = 0;
 			items.each(function(k,v){
-				sum += parseFloat($(v).val());
+				sum += parseFloat($(v).val().split(',').join(''));
 			})
 			return sum;
 		}
 		function docalc_<?php echo $field_base_id; ?>(){
 			var <?php echo implode(', ',$binds_vars); ?>,
-				total = <?php echo $formula; ?>;
+				total = <?php echo $formula; ?>,
+				view_total = total;
 
 
 			<?php if(!empty($field['config']['fixed'])){ ?>
+			function addCommas(nStr){
+				nStr += '';
+				x = nStr.split('.');
+				x1 = x[0];
+				x2 = x.length > 1 ? '.' + x[1] : '';
+				var rgx = /(\d+)(\d{3})/;
+				while (rgx.test(x1)) {
+					x1 = x1.replace(rgx, '$1' + ',' + '$2');
+				}
+				return x1 + x2;
+			}
 			total = total.toFixed(2);
+			view_total = addCommas( total );
 			<?php } ?>
 
-			$('#<?php echo $field_id; ?>').html( total );
+			$('#<?php echo $field_id; ?>').html( view_total );
 			$('[data-field="<?php echo $field_base_id; ?>"]').val( total ).trigger('change');
 
 		}

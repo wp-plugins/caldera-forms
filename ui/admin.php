@@ -82,40 +82,28 @@ $modal_new_form = __('Create Form', 'caldera-forms').'|{"data-action" : "create_
 				}else{
 					$total = __('Disabled', 'caldera-forms');
 				}
-				/*
-				?>
-
-				<div class="form-panel postbox">
-					<h4><?php echo $form['name']; ?></h4>
-					<?php if(!empty($form['description'])){ ?><h5><?php echo $form['description']; ?></h5><?php } ?>
-
-					<ul class="form-controls">
-						<li><a class="form-control" href="admin.php?page=caldera-forms&edit=<?php echo $form_id; ?>"><?php echo __('Edit Form', 'caldera-forms'); ?></a></li>
-						<li><a class="form-control ajax-trigger" href="#entres"
-
-						data-action="browse_entries"
-						data-target="#form-entries-viewer"
-						data-form="<?php echo $form_id; ?>"
-
-
-
-						><?php echo __('Entries: ' . $total, 'caldera-forms'); ?></a></li>
-						<li class="form-delete"><a class="form-control" data-confirm="<?php echo __('This will delete this form permanently. Continue?', 'caldera-forms'); ?>" href="admin.php?page=caldera-forms&delete=<?php echo $form_id; ?>&cal_del=<?php echo wp_create_nonce( 'cf_del_frm' ); ?>"><?php echo __('Delete Form', 'caldera-forms'); ?></a></li>
-					</ul>					
-				</div>
-
-				<?php
-				*/
+			
 				?>
 
 				<tr id="form_row_<?php echo $form_id; ?>" class="<?php echo $class; ?> form_entry_row">						
-					<td>						
+					<td class="<?php if( !empty( $form['form_draft'] ) ) { echo 'draft-form'; }else{ echo 'active-form'; } ?>">
 						<?php echo $form['name']; ?>
+						
 						<?php if( !empty( $form['debug_mailer'] ) ) { ?>
 						<span style="color: rgb(207, 0, 0);" class="description"><?php _e('Mailer Debug enabled.', 'caldera-forms') ;?></span>
 						<?php } ?>
+												
 						<div class="row-actions">
 						<span class="edit"><a class="form-control" href="admin.php?page=caldera-forms&edit=<?php echo $form_id; ?>"><?php echo __('Edit'); ?></a> | </span>
+						<span class="edit"><a class="form-control form-entry-trigger ajax-trigger" href="#entres"
+						data-load-element="#form_row_<?php echo $form_id; ?>"
+						data-action="toggle_form_state"
+						data-active-element="#form_row_<?php echo $form_id; ?>"
+						data-callback="set_form_state"
+						data-form="<?php echo $form_id; ?>"
+
+						><?php if( !empty( $form['form_draft'] ) ) { echo __('Activate', 'caldera-forms'); }else{ echo __('Deactivate', 'caldera-forms'); } ?></a> | </span>
+
 						<?php if(!empty($form['db_support'])){ ?><span class="edit"><a class="form-control form-entry-trigger ajax-trigger" href="#entres"
 
 						data-action="browse_entries"
@@ -166,6 +154,16 @@ $modal_new_form = __('Create Form', 'caldera-forms').'|{"data-action" : "create_
 do_action('caldera_forms_admin_templates');
 ?>
 <script type="text/javascript">
+
+function set_form_state( obj ){
+	if( true === obj.data.success ){
+
+		var row = jQuery('#form_row_' + obj.data.data.ID + '>td');
+		row.first().attr('class', obj.data.data.state );
+		obj.params.trigger.text( obj.data.data.label );
+		
+	}
+}
 
 function new_form_redirect(obj){
 	if(typeof obj.data === 'string'){

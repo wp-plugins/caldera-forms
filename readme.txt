@@ -2,8 +2,8 @@
 Contributors: Desertsnowman, Shelob9
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
-Tested up to: 4..1
-Stable tag: 1.1.9.6
+Tested up to: 4.1.1
+Stable tag: 1.1.9.7
 License: GPLv2
 
 Drag and drop responsive form builder.
@@ -19,6 +19,12 @@ A free plugin by <a href="https://CalderaWP.com" title="CalderaWP: Transform You
 * [More Information](https://calderawp.com/free-plugin/caldera-forms/)
 * [Documentation](http://docs.calderaforms.com/)
 * [Report Issues](https://github.com/Desertsnowman/Caldera-Forms)
+
+= Free Addons =
+* [Verify Email for Caldera Forms](https://wordpress.org/plugins/verify-email-for-caldera-forms/)
+* [Slack Integration for Caldera Forms](https://wordpress.org/plugins/slack-integration-for-caldera-forms/)
+* [Form as Metabox - Custom Fields](https://wordpress.org/plugins/caldera-form-metabox/)
+* [Sprout Invoices Integration](https://wordpress.org/plugins/caldera-forms-sprout-invoices-integration/)
 
 = A Few Feature Highlights =
 * Responsive Grid design based on Bootstrap 3
@@ -76,6 +82,20 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.9.7 ( April, 2015) =
+
+= Bug fixes =
+* Corrected a bug that allowed setting a field to its own conditional (infinte loop)
+
+= Additions =
+* Added a "Entry List" behaviour to Variables to allow the variable to show in entry list.
+* Added filter 'caldera_forms_get_form' for filtering form structure before using it.
+* Added the ability to render forms directly from an array structure ( Experimental dev feature : Allows you to render forms from a structure without needing to import one ).
+
+= Improvements =
+* Made selected field in edit easier to see.
+* Added a Drfat / Deactivate mode for forms.
 
 = 1.1.9.6 ( April, 2015) =
 

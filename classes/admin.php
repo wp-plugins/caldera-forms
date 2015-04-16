@@ -78,7 +78,8 @@ class Caldera_Forms_Admin {
 			add_action("wp_ajax_create_form", array( $this, 'create_form') );
 		}
 
-		add_action("wp_ajax_browse_entries", array( $this, 'browse_entries') );
+		add_action("wp_ajax_toggle_form_state", array( $this, 'toggle_form_state') );
+		add_action("wp_ajax_browse_entries", array( $this, 'browse_entries') );		
 		add_action("wp_ajax_save_cf_setting", array( $this, 'save_cf_setting') );
 		add_action("wp_ajax_cf_dismiss_pointer", array( $this, 'update_pointer') );
 		add_action("wp_ajax_cf_bulk_action", array( $this, 'bulk_action') );
@@ -359,6 +360,33 @@ class Caldera_Forms_Admin {
 		return $buttons;
 	}
 
+
+	public static function toggle_form_state(){
+		
+		$forms = get_option( '_caldera_forms' );
+		$form = sanitize_text_field( $_POST['form'] );
+		$form = Caldera_Forms::get_form( $form );
+		if( empty( $form ) || empty( $form['ID'] ) || empty( $forms[ $form['ID'] ]) ){
+			wp_send_json_error( );
+		}
+
+		if( isset( $form['form_draft'] ) ){
+			unset( $form['form_draft'] );
+			unset( $forms[ $form['ID'] ]['form_draft'] );		
+			$state = 'active-form';
+			$label = __('Deactivate', 'caldera-forms');
+		}else{
+			$forms[ $form['ID'] ]['form_draft'] = $form['form_draft'] = 1;
+			$state = 'draft-form';
+			$label = __('Activate', 'caldera-forms');
+		}
+
+		update_option( '_caldera_forms', $forms );
+		update_option( $form['ID'], $form );
+		
+		wp_send_json_success( array( 'ID' => $form['ID'], 'state' => $state, 'label' => $label ) );
+	}
+
 	public static function browse_entries(){
 
 		global $wpdb;
@@ -366,7 +394,7 @@ class Caldera_Forms_Admin {
 		$page = 1;
 		$perpage = 20;
 
-		$form = get_option( $_POST['form'] );
+		$form = Caldera_Forms::get_form( $_POST['form'] );
 			
 		$field_labels = array();
 		$backup_labels = array();
@@ -385,7 +413,11 @@ class Caldera_Forms_Admin {
 					$selects[] = "'".$field['slug']."'";
 					$field_labels[$field['slug']] = $field['label'];
 				}
-				if(count($backup_labels) < 4 && in_array($field['type'], array('text','email','date','name'))){
+				$has_vars = array();
+				if( !empty( $form['variables']['types'] ) ){
+					$has_vars = $form['variables']['types'];
+				}
+				if( ( count($backup_labels) < 4 && !in_array( 'entryitem', $has_vars ) ) && in_array($field['type'], array('text','email','date','name'))){
 					// backup only first 4 fields
 					$backup_labels[$field['slug']] = $field['label'];
 				}
@@ -536,6 +568,16 @@ class Caldera_Forms_Admin {
 							$data['entries']['E' . $row->_entryid]['data'][$row->slug] = $row->value;
 						}
 					}
+
+					if( !empty( $form['variables']['types'] ) ){
+						foreach( $form['variables']['types'] as $var_key=>$var_type ){
+							if( $var_type == 'entryitem' ){
+								$data['fields'][$form['variables']['keys'][$var_key]] = ucwords( str_replace( '_', ' ', $form['variables']['keys'][$var_key] ) );
+								$data['entries']['E' . $row->_entryid]['data'][$form['variables']['keys'][$var_key]] = Caldera_Forms::do_magic_tags( $form['variables']['values'][$var_key], $row->_entryid );
+							}
+						}
+					}
+
 
 				}
 			}
@@ -829,7 +871,7 @@ class Caldera_Forms_Admin {
 			include CFCORE_PATH . 'ui/community.php';
 		}elseif(!empty($_GET['page']) && false !== strpos($_GET['page'], 'caldera-forms-pin-')){
 			$formID = substr($_GET['page'], 18);
-			$form = get_option($formID);
+			$form = Caldera_Forms::get_form($formID);
 			include CFCORE_PATH . 'ui/entries.php';
 
 		}else{
@@ -857,7 +899,7 @@ class Caldera_Forms_Admin {
 				$forms = get_option( '_caldera_forms' );
 				if(isset($forms[$_GET['delete']])){
 					unset($forms[$_GET['delete']]);
-					$form = get_option( $_GET['delete'] );
+					$form = Caldera_Forms::get_form( $_GET['delete'] );
 					if(empty($form)){
 						do_action('caldera_forms_delete_form', $_GET['delete']);
 						update_option( '_caldera_forms', $forms );
@@ -1018,7 +1060,7 @@ class Caldera_Forms_Admin {
 		}
 		if(!empty($_GET['export-form']) && current_user_can( 'manage_options' )){
 
-			$form = get_option( $_GET['export-form'] );
+			$form = Caldera_Forms::get_form( $_GET['export-form'] );
 
 			if(empty($form)){
 				wp_die( __('Form does not exist.', 'caldera-forms') );
@@ -1037,7 +1079,7 @@ class Caldera_Forms_Admin {
 
 		if(!empty($_GET['export']) && current_user_can( 'manage_options') ){
 
-			$form = get_option( $_GET['export'] );
+			$form = Caldera_Forms::get_form( $_GET['export'] );
 
 			global $wpdb;
 

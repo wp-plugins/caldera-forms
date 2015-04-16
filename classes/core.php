@@ -86,6 +86,36 @@ class Caldera_Forms {
 	}
 
 
+	public static function get_form( $id_name ){
+
+		if( is_array( $id_name ) && !empty( $id_name['ID'] ) ){
+			
+			$id_name['db_support'] = null;
+
+			return apply_filters( 'caldera_forms_get_form', $id_name, '_struct' );
+		}elseif( is_array( $id_name ) ){
+			return false;
+		}
+
+		$id_name = sanitize_text_field( $id_name );
+
+		$forms = get_option( '_caldera_forms' );
+		$form = null;
+
+		if( isset( $forms[ $id_name ] ) ){
+			$form = get_option( $forms[ $id_name ]['ID'] );
+		}
+
+		foreach($forms as $form_id=>$form_maybe){
+			if( trim(strtolower($id_name)) == strtolower($form_maybe['name']) ){
+				$form = get_option( $form_maybe['ID'] );
+			}
+		}
+
+		return apply_filters( 'caldera_forms_get_form', $form, $id_name );
+
+	}
+
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -2194,7 +2224,7 @@ class Caldera_Forms {
 		//dump($processed_data[$form['ID']],0);
 		//echo $field_id.'<br>';
 		if(is_string($form)){
-			$form = get_option( $form );
+			$form = self::get_form( $form );
 			if(!isset($form['ID']) || $form['ID'] !== $form){
 				return null;
 			}
@@ -2360,7 +2390,7 @@ class Caldera_Forms {
 		$entry = $wpdb->get_row($wpdb->prepare("SELECT * FROM `" . $wpdb->prefix ."cf_form_entries` WHERE `id` = %d", $entry_id ), ARRAY_A);
 		if(!empty($entry)){
 			if( null === $form ){
-				$form = get_option( $entry['form_id'] );
+				$form = self::get_form( $entry['form_id'] );
 				if( empty($form) ){
 					return null;
 				}
@@ -2491,7 +2521,7 @@ class Caldera_Forms {
 
 		if(is_string($form)){
 			$form_id = $form;
-			$form = get_option( $form );
+			$form = self::get_form( $form );
 			if(!isset($form['ID']) || $form['ID'] !== $form_id){				
 				return new WP_Error( 'fail',  __('Invalid form ID', 'caldera-forms') );
 			}
@@ -2559,7 +2589,7 @@ class Caldera_Forms {
 		if( !isset( $forms[ $_POST['_cf_frm_id'] ] ) ){
 			return;
 		}
-		$form = get_option( $forms[ $_POST['_cf_frm_id'] ]['ID'] );
+		$form = self::get_form( $forms[ $_POST['_cf_frm_id'] ]['ID'] );
 		if(empty($form['ID']) || $form['ID'] != $_POST['_cf_frm_id']){
 			return;
 		}
@@ -2990,8 +3020,7 @@ class Caldera_Forms {
 						}
 						self::set_submission_meta($metakey, $metavalue, $form, $processor_id);
 					}
-				} // check for transdata errors
-				
+				} // check for transdata errors								
 				
 				if(!empty($transdata['error'])){
 					// remove pending entry
@@ -3024,7 +3053,6 @@ class Caldera_Forms {
 		}
 		do_action('caldera_forms_submit_process_end', $form, $referrer, $process_id);
 		// AFTER PROCESS - do post process for any additional stuff
-		
 
 		do_action('caldera_forms_submit_post_process', $form, $referrer, $process_id);
 		// POST PROCESS
@@ -3111,7 +3139,7 @@ class Caldera_Forms {
 		// check for API
 		if(!empty($wp_query->query_vars['cf_api'])){
 			// check if form exists
-			$form = get_option( $wp_query->query_vars['cf_api'] );
+			$form = self::get_form( $wp_query->query_vars['cf_api'] );
 			if(!empty($form['ID'])){
 				if($form['ID'] === $wp_query->query_vars['cf_api']){
 					// got it!
@@ -3141,7 +3169,7 @@ class Caldera_Forms {
 			if( !isset( $forms[ $_GET['cf_preview'] ] ) ){
 				return;
 			}
-			$form = get_option( $forms[ $_GET['cf_preview'] ]['ID'] );
+			$form = self::get_form( $forms[ $_GET['cf_preview'] ]['ID'] );
 
 			$userid = get_current_user_id();
 			if( !empty( $userid ) ){
@@ -3277,7 +3305,7 @@ class Caldera_Forms {
 						$atts = shortcode_parse_atts($found[3][$index]);
 						if(isset($atts['id'])){
 							// has form get  stuff for it
-							$form = get_option( $atts['id'] );
+							$form = self::get_form( $atts['id'] );
 							if(!empty($form)){
 								// get list of used fields
 								if(empty($form['fields'])){
@@ -3374,7 +3402,7 @@ class Caldera_Forms {
 				if( !isset( $forms[ $_POST['form'] ] ) ){
 					return;
 				}
-				$form = get_option( $forms[ $_POST['form'] ]['ID'] );
+				$form = self::get_form( $forms[ $_POST['form'] ]['ID'] );
 				if(empty($form['ID']) || $form['ID'] != $_POST['form']){
 					return;
 				}
@@ -3395,7 +3423,7 @@ class Caldera_Forms {
 		
 		if(is_string($form)){
 			$form_id = $form;
-			$form = get_option( $form );
+			$form = self::get_form( $form );
 			if(!isset($form['ID']) || $form['ID'] !== $form_id){				
 				return new WP_Error( 'fail',  __('Invalid form ID', 'caldera-forms') );
 			}
@@ -3470,6 +3498,19 @@ class Caldera_Forms {
 				'avatar' 	=> get_avatar( $avatar_field, 150),
 			);
 		}
+
+		if( !empty( $form['variables']['types'] ) ){
+			foreach( $form['variables']['types'] as $var_key=>$var_type ){
+				if( $var_type == 'entryitem' ){
+					$var_val = Caldera_Forms::do_magic_tags( $form['variables']['values'][$var_key], $entry_id );
+					$data['data'][ '_var_' . $form['variables']['keys'][$var_key] ] = array(
+						'label' => ucwords( str_replace('_', ' ', $form['variables']['keys'][$var_key] ) ),
+						'view'	=> $var_val,
+						'value' => sanitize_text_field( $var_val )
+					);
+				}
+			}
+		}		
 		
 		// allow plugins to alter the profile.
 		$data['user'] = apply_filters( 'caldera_forms_get_entry_user', $data['user'], $entry_id, $form);
@@ -3488,7 +3529,7 @@ class Caldera_Forms {
 		if(empty($atts['id'])){
 			return $content;
 		}
-		$form = get_option( $atts['id'] );
+		$form = self::get_form( $atts['id'] );
 		if(empty($form['ID']) || $form['ID'] != $atts['id']){
 			return $content;
 		}
@@ -3551,7 +3592,7 @@ class Caldera_Forms {
 			echo $footer_modals;
 		}
 	}
-	static public function render_form($atts, $entry_id = null){
+	static public function render_form($atts, $entry_id = null, $shortcode = null){
 
 		global $current_form_count, $form, $post;
 
@@ -3559,38 +3600,43 @@ class Caldera_Forms {
 			return;
 		}
 
-
 		if(is_string($atts)){
 
-			$form = get_option( $atts );
+			$form = self::get_form( $atts );
 
-			if(empty($form['ID']) || ( empty($form['ID']) && empty($form['name']) ) ){
-				$forms = get_option( '_caldera_forms' );
-				//dump($forms);
-				return;
-			}
-
-			$atts = array( 'id' => $atts);
 		}else{
+
 			if(empty($atts['id'])){
 				if(!empty($atts['name'])){
-					$forms = get_option( '_caldera_forms' );
-					foreach($forms as $form_id=>$form_maybe){
-						if( trim(strtolower($atts['name'])) == strtolower($form_maybe['name']) ){
-							$atts['id'] = $form_id;
-							break;
-						}
-					}
+					$form = self::get_form( $atts['name'] );
 				}
-
-				if(empty($atts['id'])){
-					return;
-				}
+			}elseif( !empty( $atts['id'] ) ){
+				$form = self::get_form( $atts['id'] );
 			}
-			$form = get_option( $atts['id'] );
-
 		}
 
+		if( empty( $form ) ){
+			if( null === $shortcode && is_array( $atts ) ){
+				$form = self::get_form( $atts );
+			}else{
+				return;
+			}
+		}
+
+		// is this form allowed to render ( check state )
+		if( isset( $form['form_draft'] ) ){
+			if( !isset( $_GET['cf_preview'] ) || $_GET['cf_preview'] != $form['ID'] ){
+				if( isset( $_POST['action'] ) && $_POST['action'] == 'cf_get_form_preview' ){
+					echo '<p style="color: #cf0000;">' . __('Form is currently not active.', 'caldera-forms') . '</p>';
+				}else{
+					return;
+				}
+				
+			}else{
+				echo '<div class="caldera-grid"><p class="alert alert-error alert-danger">' . __('Form is currently not active.', 'caldera-forms') . '</p></div>';
+			}
+		}
+		
 		if(isset($atts['ajax'])){
 			if(!empty($atts['ajax'])){
 				$form['form_ajax'] = 1;
@@ -4069,7 +4115,7 @@ class Caldera_Forms {
 			// render only non success
 			$out .= "<" . $form_element . " data-instance=\"" . $current_form_count . "\" class=\"" . implode(' ', $form_classes) . "\" " . implode(" ", $attributes) . ">\r\n";
 			$out .= wp_nonce_field( "caldera_forms_front", "_cf_verify", true, false);
-			$out .= "<input type=\"hidden\" name=\"_cf_frm_id\" value=\"" . $atts['id'] . "\">\r\n";
+			$out .= "<input type=\"hidden\" name=\"_cf_frm_id\" value=\"" . $form['ID'] . "\">\r\n";
 			$out .= "<input type=\"hidden\" name=\"_cf_frm_ct\" value=\"" . $current_form_count . "\">\r\n";
 			if( is_object($post) ){
 				$out .= "<input type=\"hidden\" name=\"_cf_cr_pst\" value=\"" . $post->ID . "\">\r\n";
