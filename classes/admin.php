@@ -68,7 +68,7 @@ class Caldera_Forms_Admin {
 		add_action('caldera_forms_admin_templates', array( $this, 'get_admin_templates'),1);
 		add_action('caldera_forms_entry_meta_templates', array( $this, 'get_admin_meta_templates'),1);
 
-		add_action( 'wp_loaded', array( $this, 'save_form') );
+		add_action( 'init', array( $this, 'save_form') );
 		add_action( 'media_buttons', array($this, 'shortcode_insert_button' ), 11 );
 		add_filter( 'wp_fullscreen_buttons', array($this, 'shortcode_insert_button_fs' ), 11 );
 
@@ -547,6 +547,12 @@ class Caldera_Forms_Admin {
 						$field = apply_filters( 'caldera_forms_render_get_field', $field, $form);
 						$field = apply_filters( 'caldera_forms_render_get_field_type-' . $field['type'], $field, $form);
 						$field = apply_filters( 'caldera_forms_render_get_field_slug-' . $field['slug'], $field, $form);
+
+						// maybe json?
+						$is_json = json_decode( $row->value, ARRAY_A );
+						if( !empty( $is_json ) ){
+							$row->value = $is_json;
+						}
 
 						if( is_string( $row->value ) ){
 							$row->value = esc_html( stripslashes_deep( $row->value ) );

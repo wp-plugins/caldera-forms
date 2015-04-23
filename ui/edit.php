@@ -62,7 +62,10 @@ $field_options_template = "
 			<select class=\"block-input field-config auto-populate-type\" name=\"{{_name}}[auto_type]\">
 				<option value=\"\">" . __('Select a source', 'caldera-forms') . "</option>
 				<option value=\"post_type\"{{#is auto_type value=\"post_type\"}} selected=\"selected\"{{/is}}>" . __('Post Type', 'caldera-forms') . "</option>
-				<option value=\"taxonomy\"{{#is auto_type value=\"taxonomy\"}} selected=\"selected\"{{/is}}>" . __('Taxonomy', 'caldera-forms') . "</option>
+				<option value=\"taxonomy\"{{#is auto_type value=\"taxonomy\"}} selected=\"selected\"{{/is}}>" . __('Taxonomy', 'caldera-forms') . "</option>";
+				ob_start();
+				do_action( 'caldera_forms_autopopulate_types' );
+				$field_options_template .= ob_get_clean() . "
 			</select>
 		</div>
 	</div>
@@ -93,8 +96,6 @@ $field_options_template = "
 	    	foreach($post_types as $type){
 	    		$field_options_template .= "<option value=\"" . $type->name . "\" {{#is post_type value=\"" . $type->name . "\"}}selected=\"selected\"{{/is}}>" . $type->labels->name . "</option>\r\n";
 	    	}
-	    	
-	    	do_action( 'caldera_forms_autopopulate_types' );
 
 			$field_options_template .= "</select>
 
@@ -451,6 +452,9 @@ function field_line_template($id = '{{id}}', $label = '{{label}}', $group = '{{g
 		</li>
 
 	</ul>
+
+	<div class="updated_notice_box"><?php _e( 'Updated Successfully', '{{core-slug}}' ); ?></div>
+
 	<button class="button button-primary caldera-header-save-button" data-active-class="none" data-load-element="#save_indicator" type="button"><?php echo __('Update Form', 'caldera-forms'); ?><span id="save_indicator" class="spinner" style="position: absolute; right: -28px;"></span></button>	
 	<a class="button caldera-header-preview-button" target="_blank" href="<?php echo trailingslashit( get_home_url() ) . '?cf_preview=' . $element['ID']; ?>"><?php echo __('Preview Form', 'caldera-forms'); ?></a>
 </div>
@@ -849,7 +853,7 @@ do_action('caldera_forms_edit_end', $element);
 					<select name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][field]" data-condition="{{../type}}" class="caldera-field-bind caldera-conditional-field-set" data-id="{{../../id}}" {{#if field}}data-default="{{field}}"{{/if}} data-line="{{id}}" data-row="{{../id}}" data-all="true" style="max-width:120px;">
 						{{#if field}}<option value="{{field}}" class="bound-field" selected="selected"></option>{{else}}<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>{{/if}}
 					</select>
-					<select name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][compare]" style="max-width:110px;">
+					<select class="compare-type" name="config[{{../type}}][{{../../id}}][conditions][group][{{../id}}][{{id}}][compare]" style="max-width:110px;">
 						<option value="is" {{#is compare value="is"}}selected="selected"{{/is}}><?php echo __('is', 'caldera-forms'); ?></option>
 						<option value="isnot" {{#is compare value="isnot"}}selected="selected"{{/is}}><?php echo __('is not', 'caldera-forms'); ?></option>
 						<option value=">" {{#is compare value=">"}}selected="selected"{{/is}}><?php echo __('is greater than', 'caldera-forms'); ?></option>
@@ -858,7 +862,7 @@ do_action('caldera_forms_edit_end', $element);
 						<option value="endswith" {{#is compare value="endswith"}}selected="selected"{{/is}}><?php echo __('ends with', 'caldera-forms'); ?></option>
 						<option value="contains" {{#is compare value="contains"}}selected="selected"{{/is}}><?php echo __('contains', 'caldera-forms'); ?></option>
 					</select>
-					<span class="caldera-conditional-field-value" data-value="{{value}}" id="{{id}}_value"><input disabled type="text" value="" placeholder="<?php echo __('Select field first', 'caldera-forms'); ?>" style="max-width: 165px;"></span>
+					<span style="padding: 0 12px 0; " class="caldera-conditional-field-value" data-value="{{value}}" id="{{id}}_value"><input disabled type="text" value="" placeholder="<?php echo __('Select field first', 'caldera-forms'); ?>" style="max-width: 165px;"></span>
 					<button type="button" class="button remove-conditional-line pull-right"><i class="icon-join"></i></button>
 				</div>
 				{{/each}}

@@ -2,8 +2,8 @@
 Contributors: Desertsnowman, Shelob9
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
-Tested up to: 4.1.1
-Stable tag: 1.1.9.7
+Tested up to: 4.1.2
+Stable tag: 1.1.9.8
 License: GPLv2
 
 Drag and drop responsive form builder.
@@ -82,6 +82,21 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.9.8 ( April, 2015) =
+
+= Improvements =
+* Added setting for custom thousand separator on calculator in money format.
+* improved array handling
+* set conditions to look at lable not value.
+* slugs from option based fields can now reference the lable with %field_slug:label%
+
+= Bug fixes =
+* Corrected a bug in the file upload not stopping on incorrect file type
+* fixed an action in the autopopulate options for field config
+* fixed a bug that made the field bind autocomplete box dissapear when scrolling
+
+
 
 = 1.1.9.7 ( April, 2015) =
 
