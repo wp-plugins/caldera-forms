@@ -48,7 +48,7 @@
 					comparefield 	= [],
 					comparevalue	= (typeof lines[lid].value === 'function' ? lines[lid].value() : lines[lid].value);
 					
-					if( lines[lid].label ){
+					if( lines[lid].label && lines[lid].compare === 'is' ){
 						comparevalue = lines[lid].label;
 					}
 
@@ -69,7 +69,7 @@
 						comparefield.push(lines[lid].field);
 					}else{
 						for( var i = 0; i<compareelement.length; i++){
-							if( lines[lid].label ){								
+							if( lines[lid].label && lines[lid].compare === 'is' ){
 								comparefield.push( $( compareelement[i] ).parent().text().trim() );
 							}else{
 								comparefield.push(compareelement[i].value);	
