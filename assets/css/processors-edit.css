@@ -1,0 +1,62 @@
+.caldera-editor-processors-panel {
+  float: left;
+  margin-right: 20px;
+  width: 250px;
+}
+.caldera-editor-processors-panel li{
+  border-bottom: 1px solid #DFDFDF;
+  margin: 0;
+}
+.caldera-editor-processors-panel a{
+  color: #6F6F6F;
+  display: block;
+  padding: 6px;
+  text-decoration: none;
+}
+.caldera-editor-processors-panel li.active a,
+.caldera-editor-processors-panel a:hover{
+  background: none repeat scroll 0 0 #E8E8E8;
+}
+.caldera-editor-processor-config {
+  float: left;
+  width: auto;
+}
+.caldera-editor-processor-config-wrapper {
+  width: 550px;
+}
+h3.caldera-editor-processor-title {
+  border-bottom: 1px solid #CFCFCF;
+  color: #3F3F3F;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 6px;
+  padding: 5px 0 12px;
+}
+.form-modal-add-line {
+  border-bottom: 1px solid #EFEFEF;
+  margin: -12px -12px 12px;
+  padding: 6px 134px 6px 72px;
+}
+
+.form-modal-add-line:hover {
+  background-color: #f7f7f7;
+}
+button.button.info-button {
+  float: right;
+  margin-right: -120px;
+  margin-top: 8px;
+}
+#field_setup_baldrickModalBody.caldera-modal-body,
+#form_processor_baldrickModalBody.caldera-modal-body{
+  bottom: 0;
+  overflow: auto;
+}
+
+.form-modal-lgo {
+  border-radius: 4px;
+  float: left;
+  height: 45px;
+  margin-left: -60px;
+  margin-right: 9px;
+  width: 45px;
+}
