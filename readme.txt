@@ -3,7 +3,7 @@ Contributors: Desertsnowman, Shelob9
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
 Tested up to: 4.2
-Stable tag: 1.1.9.9
+Stable tag: 1.1.9.10
 License: GPLv2
 
 Drag and drop responsive form builder.
@@ -83,12 +83,13 @@ none yet.
 
 == Changelog ==
 
-= 1.1.9.8 ( April, 2015) =
+= 1.1.9.10 ( April, 2015) =
+* error on checkboxes and array tag showing
+
+= 1.1.9.9 ( April, 2015) =
 
 = Critical Bug fixe =
 * on php 5.3 widget forms and function render forms gave "permission denied" error. solved.
-
-
 
 = 1.1.9.8 ( April, 2015) =
 
