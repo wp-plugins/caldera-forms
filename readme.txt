@@ -1,28 +1,38 @@
 === Caldera Forms ===
-Contributors: Desertsnowman
-Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
+Contributors: Desertsnowman, Shelob9
+Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 1.1.9.1
+Tested up to: 4.2
+Stable tag: 1.1.9.10
 License: GPLv2
 
-Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
+Drag and drop responsive form builder.
 
 == Description ==
 Caldera Forms is an easy to use free WordPress form builder with a layout builder that enables you to create the format you want for your form. It is fully responsive and with form processors, it gives you flexibility to handle the form data how you need it without needing a single line of code.
 
 Easy enough for everyday users to create forms, and powerful enough for php ninjas to extend.
 
-For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-Form Docs, Demos & Templates can be found on the docs site (work in progress) [Caldera Forms Documentation](http://docs.calderaforms.com/)
+A free plugin by <a href="https://CalderaWP.com" title="CalderaWP: Transform Your WordPress Experience">CalderaWP</a>.
+
+* [Premium Add-ons](https://calderawp.com/caldera-forms-add-ons/)
+* [More Information](https://calderawp.com/free-plugin/caldera-forms/)
+* [Documentation](http://docs.calderaforms.com/)
+* [Report Issues](https://github.com/Desertsnowman/Caldera-Forms)
+
+= Free Addons =
+* [Verify Email for Caldera Forms](https://wordpress.org/plugins/verify-email-for-caldera-forms/)
+* [Slack Integration for Caldera Forms](https://wordpress.org/plugins/slack-integration-for-caldera-forms/)
+* [Form as Metabox - Custom Fields](https://wordpress.org/plugins/caldera-form-metabox/)
+* [Sprout Invoices Integration](https://wordpress.org/plugins/caldera-forms-sprout-invoices-integration/)
 
 = A Few Feature Highlights =
 * Responsive Grid design based on Bootstrap 3
 * Advanced Conditionals allows for multi, complex matching
-* Form Processors allows for stacking up form functionality, conditionaly
+* Form Processors allows for stacking up form functionality, conditionally
 * Export and Import forms across installations
 * Ajax or Page reload
-* Multipage forms
+* Multi-page forms
 * CSV of submission attached to notification email
 * Auto Responder
 * File Uploads
@@ -55,7 +65,6 @@ Everything can be extended. For developers, there are enough hooks and filters t
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
 
 
-
 == Installation ==
 
 Upload the caldera-forms folder to /wp-content/plugins/
@@ -73,6 +82,108 @@ none yet.
 3. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.1.9.10 ( April, 2015) =
+* error on checkboxes and array tag showing
+
+= 1.1.9.9 ( April, 2015) =
+
+= Critical Bug fixe =
+* on php 5.3 widget forms and function render forms gave "permission denied" error. solved.
+
+= 1.1.9.8 ( April, 2015) =
+
+= Improvements =
+* Added setting for custom thousand separator on calculator in money format.
+* improved array handling
+* set conditions to look at lable not value.
+* slugs from option based fields can now reference the lable with %field_slug:label%
+
+= Bug fixes =
+* Corrected a bug in the file upload not stopping on incorrect file type
+* fixed an action in the autopopulate options for field config
+* fixed a bug that made the field bind autocomplete box dissapear when scrolling
+
+
+
+= 1.1.9.7 ( April, 2015) =
+
+= Bug fixes =
+* Corrected a bug that allowed setting a field to its own conditional (infinte loop)
+
+= Additions =
+* Added a "Entry List" behaviour to Variables to allow the variable to show in entry list.
+* Added filter 'caldera_forms_get_form' for filtering form structure before using it.
+* Added the ability to render forms directly from an array structure ( Experimental dev feature : Allows you to render forms from a structure without needing to import one ).
+
+= Improvements =
+* Made selected field in edit easier to see.
+* Added a Drfat / Deactivate mode for forms.
+
+= 1.1.9.6 ( April, 2015) =
+
+= Bug fixes =
+* slashes removed on mailer body
+* Reset fixed for toggle buttons working
+* reCaptcha multi instances
+
+= Improvements =
+* changed the delete element and processor buttons to gray
+* changed the Success message box to a textarea for larger notices.
+
+= Added =
+* added custom ajax callbacks and overrides
+* Increment value processor
+* added BCC and Reply To options for mailer
+* Mailer Debug mode to track issues with sending notifications
+
+= 1.1.9.5 ( March, 2015) =
+
+= Bug fixes =
+* Fixed datepicker language loader ... again
+* Pagination next validator on checkbox prevented progression
+
+= Improvements =
+* cleaned up the view entry modal a bit
+* cleaned up paragraph entry view
+* moved a few hooks around for better handling
+* added custom class to html element
+
+
+= 1.1.9.4 ( March, 2015) =
+
+= Improvements =
+* Added US States to dropdown as option
+
+= Bug fixes =
+* Fixed a clash with FacetWP pagination
+* Fixed a bug that stoped the text editor from running on WordPress 3.9
+* A few minor bug fixes and improvements
+
+
+= 1.1.9.3 ( Febuary, 2015) =
+
+= Improvements =
+* Added ID or Name value selector for autopopulation on selects
+* Importer now creates a new form and wont overide the original.
+* Modals only close on the dismiss or cancel buttons. no longer on clicking the overlay. (better for management)
+* Added Filter: `caldera_forms_autoresponse_config` to allow modifiying the auto responder config
+* Added Filter: `caldera_forms_autoresponse_mail` to allow modifiying the auto responder mail object before sending
+* Changed the form ajax handler to use the more reliable wp admin-ajax method
+* Hooks to extend the autopopulate for option based fields ( caldera_forms_autopopulate_types & caldera_forms_autopopulate_type_config )
+
+= Updated =
+* Updated the reCaptcha to use Google's new version
+
+= Bug Fix =
+* a few small minor issues where resolved.
+
+
+= 1.1.9.2 (30 November, 2014) =
+
+= Bug Fix =
+* Issue with HTML binding not working. Solved but need to explore a little more later.
+* a few smaller bug fixes & optimisations
 
 = 1.1.9.1 (27 october, 2014) =
 
