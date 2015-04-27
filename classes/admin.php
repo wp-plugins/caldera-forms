@@ -304,7 +304,7 @@ class Caldera_Forms_Admin {
 			$viewer_buttons = 'data-modal-buttons=\'' . implode(';', $viewer_buttons) . '\'';
 		}
 
-		echo '{{#if ../../is_active}}<button class="button button-small ajax-trigger view-entry-btn" data-active-class="none" data-load-class="spinner" ' . $viewer_buttons . ' data-group="viewentry" data-entry="{{_entry_id}}" data-form="{{../../form}}" data-action="get_entry" data-modal="view_entry" data-modal-width="700" data-modal-title="' . __('Entry', 'caldera-forms') . ' # {{_entry_id}}" data-template="#view-entry-tmpl" type="button">' . __('View') . '</button> {{/if}}';		
+		echo '{{#if ../../is_active}}<button class="button button-small ajax-trigger view-entry-btn" data-active-class="none" data-load-class="spinner" ' . $viewer_buttons . ' data-group="viewentry" data-entry="{{_entry_id}}" data-form="{{../../form}}" data-action="get_entry" data-modal="view_entry" data-modal-width="700" data-modal-height="700" data-modal-title="' . __('Entry', 'caldera-forms') . ' # {{_entry_id}}" data-template="#view-entry-tmpl" type="button">' . __('View') . '</button> {{/if}}';		
 		if( current_user_can( 'delete_others_posts' ) ){
 			echo '<button type="button" class="button button-small ajax-trigger" data-load-class="active" data-panel="{{#if ../../is_trash}}trash{{/if}}{{#if ../../is_active}}active{{/if}}" data-do="{{#if ../../is_trash}}active{{/if}}{{#if ../../is_active}}trash{{/if}}" data-callback="cf_refresh_view" data-form="{{../../form}}" data-active-class="disabled" data-group="row{{_entry_id}}" data-load-element="#entry_row_{{_entry_id}}" data-action="cf_bulk_action" data-items="{{_entry_id}}">{{#if ../../is_trash}}' . __('Restore', 'caldera-forms') . '{{/if}}{{#if ../../is_active}}' . __('Trash') . '{{/if}}</button>';
 		}
@@ -743,7 +743,8 @@ class Caldera_Forms_Admin {
 		wp_enqueue_script( $this->plugin_slug .'-baldrick-modals', CFCORE_URL . 'assets/js/modals.baldrick.js', array($this->plugin_slug .'-baldrick'), self::VERSION );
 		wp_enqueue_script( $this->plugin_slug .'-baldrick', CFCORE_URL . 'assets/js/jquery.baldrick.js', array('jquery'), self::VERSION );
 		*/
-		wp_enqueue_script( $this->plugin_slug .'-admin-scripts', CFCORE_URL . 'assets/js/admin.min.js', array('jquery'), self::VERSION );
+		wp_enqueue_script( $this->plugin_slug .'-baldrick', CFCORE_URL . 'assets/js/wp-baldrick-full.js', array('jquery'), self::VERSION );
+		wp_enqueue_script( $this->plugin_slug .'-admin-scripts', CFCORE_URL . 'assets/js/admin.min.js', array( $this->plugin_slug .'-baldrick' ), self::VERSION );
 
 		if(!empty($_GET['edit'])){
 
@@ -1173,8 +1174,6 @@ class Caldera_Forms_Admin {
 				}
 				$headers[$entry->slug] = $label;
 			}*/
-
-
 			
 			header("Pragma: public");
 			header("Expires: 0");
@@ -1182,7 +1181,7 @@ class Caldera_Forms_Admin {
 			header("Cache-Control: private",false);
 			header("Content-Type: text/csv charset=utf-8;");
 			header("Content-Disposition: attachment; filename=\"" . sanitize_file_name( $form['name'] ) . ".csv\";" );
-			header("Content-Transfer-Encoding: binary"); 
+			header("Content-Transfer-Encoding: binary");
 			$df = fopen("php://output", 'w');
 			fputcsv($df, $headers);
 			foreach($data as $row){
@@ -1190,7 +1189,24 @@ class Caldera_Forms_Admin {
 				foreach($headers as $key=>$label){
 					if(!isset($row[$key])){
 						$row[$key] = null;
+					}else{
+						if( is_array( $row[$key] ) && isset( $row[$key]['label'] ) ){
+							$row[$key] = $row[$key]['value'];
+						}elseif( is_array( $row[$key] ) && count( $row[$key] ) === 1 ){
+							$row[$key] = $row[$key][0];
+						}elseif( is_array( $row[$key] ) ){
+							$subs = array();
+							foreach( $row[$key] as $row_part ){
+								if( is_array( $row_part ) && isset( $row_part['label'] ) ){
+									$subs[] = $row_part['value'];
+								}else{
+									$subs[] = $row_part;
+								}
+							}
+							$row[$key] = implode(', ', $subs );
+						}
 					}
+
 					$csvrow[] = $row[$key];
 				}
 				fputcsv($df, $row);
