@@ -2172,10 +2172,6 @@ class Caldera_Forms {
 				$value = str_replace($matches[0][$key], $entry, $value);
 			}
 		}
-		
-		if( $input_value != $value ){
-			return $input_value;
-		}
 
 		return $value;
 	}
