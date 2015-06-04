@@ -2,8 +2,8 @@
 Contributors: Desertsnowman, Shelob9
 Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
-Tested up to: 4.2
-Stable tag: 1.2.0
+Tested up to: 4.2.2
+Stable tag: 1.2.1
 License: GPLv2
 
 Create beautiful, responsive forms with a simple drag and drop editor.
@@ -15,9 +15,9 @@ Easy enough for everyday users to create forms, and powerful enough for PHP expe
 
 A free plugin by <a href="https://CalderaWP.com" title="CalderaWP: Transform Your WordPress Experience">CalderaWP</a>.
 
-Pippin Williamson of Easy Digital Downloads, Restrict Content Pro and AffiliateWP gives Caldera Forms a 5 star rating!
+Pippin Williamson of Easy Digital Downloads, Restrict Content Pro and AffiliateWP gives [Caldera Forms a 5 star rating](https://themesurgeons.com/wordpress-plugins-recommendations/)!
 
-John Teague of Theme Surgeons includes Caldera Forms in his list of WordPress plugin recommendations I don’t get paid for.
+John Teague of Theme Surgeons includes Caldera Forms in his list of [WordPress plugin recommendations I don’t get paid for](https://themesurgeons.com/wordpress-plugins-recommendations/).
 
 = Docs & More Information =
 * [More Information](https://calderawp.com/downloads/caldera-forms/)
@@ -99,6 +99,20 @@ none yet.
 4. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.2.1 ( June, 2015) =
+
+= Bugs Fixed =
+* Fixed checkbox values not saving on transient redirect ( complicated, but now fixed )
+* Fixed required field on HTML element causing a form to not submit without any notice
+* Fixed issue with pin to menu rights resetting in form edit
+* A bunch of smaller bugs that was causing minor issues
+
+= Improvements =
+* Updated the visual styles on forms
+* updated mailer setup descriptions to prevent spam filtering of mails
+* auto slugs are cleaner
+* minor speed improvements in core
 
 = 1.2.0 ( April, 2015) =
 
@@ -461,4 +475,4 @@ none yet.
 Initial Release
 
 == Upgrade Notice ==
-still new, so nothing to upgrade.
+Autoupdated in WordPress admin.

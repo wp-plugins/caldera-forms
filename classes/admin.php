@@ -363,7 +363,7 @@ class Caldera_Forms_Admin {
 
 	public static function toggle_form_state(){
 		
-		$forms = get_option( '_caldera_forms' );
+		$forms = Caldera_Forms::get_forms( true );
 		$form = sanitize_text_field( $_POST['form'] );
 		$form = Caldera_Forms::get_form( $form );
 		if( empty( $form ) || empty( $form['ID'] ) || empty( $forms[ $form['ID'] ]) ){
@@ -387,15 +387,72 @@ class Caldera_Forms_Admin {
 		wp_send_json_success( array( 'ID' => $form['ID'], 'state' => $state, 'label' => $label ) );
 	}
 
+	/**
+	 * Show entries in admin
+	 *
+	 * @since unknown
+	 */
 	public static function browse_entries(){
 
-		global $wpdb;
+		if ( isset( $_POST[ 'page' ] ) && 0 < $_POST[ 'page' ] ) {
+			$page = absint( $_POST[ 'page' ] );
+		}else{
+			$page = 1;
+		}
 
-		$page = 1;
-		$perpage = 20;
+		if ( isset( $_POST[ 'perpage' ] ) && 0 < $_POST[ 'perpage' ] ) {
+			$perpage = absint( $_POST[ 'perpage' ] );
+		}else{
+			$perpage = 20;
+		}
+
+		if ( isset( $_POST[ 'status' ] ) ) {
+			$status = strip_tags( $_POST[ 'status' ] );
+		}else{
+			$status = 'active';
+		}
+
+
 
 		$form = Caldera_Forms::get_form( $_POST['form'] );
 			
+		$data = self::get_entries( $form, $page, $perpage, $status );
+
+		// set status output
+		$data['is_' . $status ] = true;
+
+		wp_send_json( $data );
+		exit;
+
+
+	}
+
+	/**
+	 * Get entries from a form
+	 *
+	 * @since 1.3.0
+	 *
+	 * @param string|array $form Form ID or form config.
+	 * @param int $page Optional. Page of entries to get per page. Default is 1.
+	 * @param int $perpage Optional. Number of entries per page. Default is 20.
+	 * @param string $status Optional. Form status. Default is active.
+	 *
+	 * @return array
+	 */
+	public static function get_entries( $form, $page = 1, $perpage = 20, $status = 'active' ) {
+
+		if ( is_string( $form ) ) {
+			$form = Caldera_Forms::get_form( $form );
+		}
+
+		if ( isset( $form[ 'ID' ])) {
+			$form_id = $form[ 'ID' ];
+		}else{
+			return;
+		}
+
+		global $wpdb;
+
 		$field_labels = array();
 		$backup_labels = array();
 		$selects = array();
@@ -431,22 +488,19 @@ class Caldera_Forms_Admin {
 		$data = array();
 
 		$filter = null;
-		if(!empty($selects)){
-			//$filter .= " AND `value`.`slug` IN (" . implode(',', $selects) . ") ";
-		}
+
 		// status
-		$status = "'active'";
-		if(!empty($_POST['status'])){
-			$status = $wpdb->prepare("%s", $_POST['status']);
+		if(!empty($status)){
+			$status = $wpdb->prepare("%s", $status );
 		}
 
-		$data['trash'] = (int) $wpdb->get_var($wpdb->prepare("SELECT COUNT(`id`) AS `total` FROM `" . $wpdb->prefix . "cf_form_entries` WHERE `form_id` = %s AND `status` = 'trash';", $_POST['form']));
-		$data['active'] = (int) $wpdb->get_var($wpdb->prepare("SELECT COUNT(`id`) AS `total` FROM `" . $wpdb->prefix . "cf_form_entries` WHERE `form_id` = %s AND `status` = 'active';", $_POST['form']));
-	
+		$data['trash'] = (int) $wpdb->get_var($wpdb->prepare("SELECT COUNT(`id`) AS `total` FROM `" . $wpdb->prefix . "cf_form_entries` WHERE `form_id` = %s AND `status` = 'trash';", $form_id ) );
+		$data['active'] = (int) $wpdb->get_var($wpdb->prepare("SELECT COUNT(`id`) AS `total` FROM `" . $wpdb->prefix . "cf_form_entries` WHERE `form_id` = %s AND `status` = 'active';", $form_id ) );
+
 
 		// set current total
-		if(!empty($_POST['status']) && isset($data[$_POST['status']])){
-			$data['total'] = $data[$_POST['status']];
+		if(!empty( $status ) && isset($data[ $status ])){
+			$data['total'] = $data[ $status ];
 		}else{
 			$data['total'] = $data['active'];
 		}
@@ -454,8 +508,8 @@ class Caldera_Forms_Admin {
 
 		$data['pages'] = ceil($data['total'] / $perpage );
 
-		if(!empty($_POST['page'])){
-			$page = abs( $_POST['page'] );
+		if(!empty( $page )){
+			$page = abs( $page );
 			if($page > $data['pages']){
 				$page = $data['pages'];
 			}
@@ -464,16 +518,13 @@ class Caldera_Forms_Admin {
 		$data['current_page'] = $page;
 		$gmt_offset = get_option( 'gmt_offset' );
 		if($data['total'] > 0){
-			
-			$data['form'] = $_POST['form'];
+
+			$data['form'] = $form_id;
 
 			$data['fields'] = $field_labels;
 			$offset = ($page - 1) * $perpage;
 			$limit = $offset . ',' . $perpage;
 
-			//if(!empty($selects)){
-			//$filter .= " AND `entry`.`status` = ".$status." ";
-			//}
 
 
 			$rawdata = $wpdb->get_results($wpdb->prepare("
@@ -482,13 +533,9 @@ class Caldera_Forms_Admin {
 				`form_id`
 			FROM `" . $wpdb->prefix ."cf_form_entries`
 
-			WHERE `form_id` = %s AND `status` = ".$status." ORDER BY `datestamp` DESC LIMIT " . $limit . ";", $_POST['form'] ));		
+			WHERE `form_id` = %s AND `status` = ".$status." ORDER BY `datestamp` DESC LIMIT " . $limit . ";", $form_id));
 
 			if(!empty($rawdata)){
-
-				foreach($rawdata as $entry){
-					//$data = Caldera_Forms::get_submission_data($entry->form_id, $entry->id);
-				}
 
 				$ids = array();
 				foreach($rawdata as $row){
@@ -510,7 +557,7 @@ class Caldera_Forms_Admin {
 				" . $filter ."
 				ORDER BY `entry`.`datestamp` DESC;");
 
-				//print_r()
+
 				$data['entries'] = array();
 				$dateformat = get_option('date_format');
 				$timeformat = get_option('time_format');
@@ -589,12 +636,8 @@ class Caldera_Forms_Admin {
 			}
 		}
 
-		// set status output
-		$data['is_' . $_POST['status']] = true;
 
-		wp_send_json( $data );
-		exit;
-
+		return $data;
 
 	}
 
@@ -622,7 +665,7 @@ class Caldera_Forms_Admin {
 	public function register_admin_page(){
 		global $menu, $submenu;
 		
-		$forms = get_option( '_caldera_forms' );
+		$forms = Caldera_Forms::get_forms();
 
 		// get current user
 		if( current_user_can( 'manage_options' ) ){
@@ -878,7 +921,7 @@ class Caldera_Forms_Admin {
 			include CFCORE_PATH . 'ui/community.php';
 		}elseif(!empty($_GET['page']) && false !== strpos($_GET['page'], 'caldera-forms-pin-')){
 			$formID = substr($_GET['page'], 18);
-			$form = Caldera_Forms::get_form($formID);
+			$form = Caldera_Forms::get_form( $formID );
 			include CFCORE_PATH . 'ui/entries.php';
 
 		}else{
@@ -903,7 +946,7 @@ class Caldera_Forms_Admin {
 			}else{
 				// ok to delete
 				// get form registry
-				$forms = get_option( '_caldera_forms' );
+				$forms = Caldera_Forms::get_forms( true );
 				if(isset($forms[$_GET['delete']])){
 					unset($forms[$_GET['delete']]);
 					$form = Caldera_Forms::get_form( $_GET['delete'] );
@@ -1019,7 +1062,7 @@ class Caldera_Forms_Admin {
 							}
 							*/
 							// get form registry
-							$forms = get_option( '_caldera_forms' );
+							$forms = Caldera_Forms::get_forms( true );
 							if(empty($forms)){
 								$forms = array();
 							}
@@ -1223,7 +1266,7 @@ class Caldera_Forms_Admin {
 				// strip slashes
 				$data = json_decode( stripslashes_deep($_POST['config']) , ARRAY_A );
 				// get form registry
-				$forms = get_option( '_caldera_forms' );
+				$forms = Caldera_Forms::get_forms( true );
 				if(empty($forms)){
 					$forms = array();
 				}
@@ -1289,7 +1332,7 @@ class Caldera_Forms_Admin {
 		parse_str( $_POST['data'], $newform );
 
 		// get form registry
-		$forms = get_option( '_caldera_forms' );
+		$forms = Caldera_Forms::get_forms( true );
 		if(empty($forms)){
 			$forms = array();
 		}
@@ -1300,7 +1343,7 @@ class Caldera_Forms_Admin {
 			"ID" 			=> uniqid('CF'),
 			"name" 			=> $newform['name'],
 			"description" 	=> $newform['description'],
-			"success"		=>	__('Form has been successfuly submitted. Thank you.', 'caldera-forms'),
+			"success"		=>	__('Form has been successfully submitted. Thank you.', 'caldera-forms'),
 			"form_ajax"		=> 1,
 			"hide_form"		=> 1
 		);
