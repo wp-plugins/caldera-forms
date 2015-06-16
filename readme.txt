@@ -1,36 +1,63 @@
 === Caldera Forms ===
-Contributors: Desertsnowman
-Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator
+Contributors: Desertsnowman, Shelob9
+Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms
 Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 1.1.9.1
+Tested up to: 4.2.2
+Stable tag: 1.2.1
 License: GPLv2
 
-Create complex grid based, responsive forms easily with an easy to use drag and drop layout builder.
+Create beautiful, responsive forms with a simple drag and drop editor.
 
 == Description ==
-Caldera Forms is an easy to use free WordPress form builder with a layout builder that enables you to create the format you want for your form. It is fully responsive and with form processors, it gives you flexibility to handle the form data how you need it without needing a single line of code.
+A diffent kind of WordPress form builder. With an intuitive drag and drop interface -– based on a responsive grid -- and a wide range of add-ons, it’s never been easier to create forms for your WordPress site that look great on any device, thanks to Caldera Forms. This free plugin includes all of the form types you want, mail and redirect processors, entry logging and AJAX submissions.
 
-Easy enough for everyday users to create forms, and powerful enough for php ninjas to extend.
+Easy enough for everyday users to create forms, and powerful enough for PHP experts to extend.
 
-For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
-Form Docs, Demos & Templates can be found on the docs site (work in progress) [Caldera Forms Documentation](http://docs.calderaforms.com/)
+A free plugin by <a href="https://CalderaWP.com" title="CalderaWP: Transform Your WordPress Experience">CalderaWP</a>.
+
+Pippin Williamson of Easy Digital Downloads, Restrict Content Pro and AffiliateWP gives [Caldera Forms a 5 star rating](https://themesurgeons.com/wordpress-plugins-recommendations/)!
+
+John Teague of Theme Surgeons includes Caldera Forms in his list of [WordPress plugin recommendations I don’t get paid for](https://themesurgeons.com/wordpress-plugins-recommendations/).
+
+= Docs & More Information =
+* [More Information](https://calderawp.com/downloads/caldera-forms/)
+* [Documentation](http://docs.calderaforms.com/)
+
+
+= Addons =
+[All Add-ons](https://calderawp.com/caldera-forms-add-ons/)
+
+= Free Add-ons =
+* [Verify Email for Caldera Forms](https://calderawp.com/downloads/verify-email-for-caldera-forms/) - Send an email with a validate link to verify the email address before completing the form submission.
+* [Form as Metabox - Custom Fields](https://calderawp.com/downloads/caldera-form-metabox/) - Use a Caldera Form as a metabox in the post editor to save custom field values.
+* [Slack Integration for Caldera Forms](https://calderawp.com/downloads/caldera-forms-slack-integration/) - Get notifications in Slack whenever a Caldera Form is submitted.
+* [Run Action](https://calderawp.com/downloads/caldera-forms-run-action/) - Trigger a WordPress action with your form submission.
+* [Sprout Invoices Integration](https://wordpress.org/plugins/caldera-forms-sprout-invoices-integration/) - Use Caldera Forms for [Sprout Invoice](https://sproutapps.co/sprout-invoices/) forms.
+* [Conditional Fail](https://wordpress.org/plugins/conditional-fail-for-caldera-forms/) - Set conditions to cause that if met will allow or prevent form submssion.
+
+= Premium Add-Ons =
+* [MailChimp](https://calderawp.com/downloads/caldera-forms-mailchimp-add-on/) - Seamlessly integrate MailChimp optins into your forms
+* [Stripe](https://calderawp.com/downloads/caldera-forms-stripe-add-on/) - Accept credit card payments via Stripe.
+* [PayPal Express](https://calderawp.com/downloads/caldera-forms-paypal-express-add-on/) - Accept payments via Paypal Express.
+* [Users](https://calderawp.com/downloads/caldera-forms-users-add/) - Register or login users from your form.
+* [Geolocation](https://calderawp.com/downloads/geolocation-field-for-caldera-forms/) - Make a text field a geolocation auto-complete field and recorded geocoded data.
+* [Mark Viewed](https://calderawp.com/downloads/caldera-forms-mark-viewed/) - Let users track what content they have viewed.
 
 = A Few Feature Highlights =
-* Responsive Grid design based on Bootstrap 3
-* Advanced Conditionals allows for multi, complex matching
-* Form Processors allows for stacking up form functionality, conditionaly
+* Drag and drop responsive form builder.
+* Responsive grid is based on Bootstrap 3
+* Process forms without a page load using AJAX
+* Advanced conditional logic for hidding and showing fields.
 * Export and Import forms across installations
-* Ajax or Page reload
-* Multipage forms
-* CSV of submission attached to notification email
-* Auto Responder
+* Multi-page forms
+* Emails sent on form submission are easily customized and can include a CSV file of entry data.
+* Configurable auto-responder and redirections.
 * File Uploads
 
 = Auto Values & Magic Tags =
-Capture system values, Post/Page data and custom fields, User data, and processor returns.
+Capture system values, form data, user data and use it populate form fields values, variables, or in response emails.
 
-= Current Available Fields (more can be added on request) =
+= Current Available Fields =
 * Calculation
 * Range Slider
 * Star Rating
@@ -54,8 +81,6 @@ Everything can be extended. For developers, there are enough hooks and filters t
 
 For issues and updates - Caldera Forms is on [GitHub](https://github.com/Desertsnowman/Caldera-Forms)
 
-
-
 == Installation ==
 
 Upload the caldera-forms folder to /wp-content/plugins/
@@ -69,10 +94,146 @@ none yet.
 
 == Screenshots ==
 1. **Layout Builder** - Easy to use Drag & Drop grid based layout.
-2. **Stackable Form Processors** - Add a form processor to handle the forms submission. Stack them up to apply multi processing.
-3. **Great Looking Forms** - Create great looking forms.
+2. **Form Processors** - With many processors available and more coming, each form can handle submissions in very unique and powerful ways.
+3. **Stackable, condition based Form Processors** - Add as many form processors as needed and add conditions for each to create specific processing flow based on user input.
+4. **Great Looking Forms** - Create great looking forms.
 
 == Changelog ==
+
+= 1.2.1 ( June, 2015) =
+
+= Bugs Fixed =
+* Fixed checkbox values not saving on transient redirect ( complicated, but now fixed )
+* Fixed required field on HTML element causing a form to not submit without any notice
+* Fixed issue with pin to menu rights resetting in form edit
+* A bunch of smaller bugs that was causing minor issues
+
+= Improvements =
+* Updated the visual styles on forms
+* updated mailer setup descriptions to prevent spam filtering of mails
+* auto slugs are cleaner
+* minor speed improvements in core
+
+= 1.2.0 ( April, 2015) =
+
+= Bugs Fixed =
+* Exports on checkboxes caused issues
+* calculation caused problems
+* Fixed the slug:label magic tag...again.
+
+= Improvements =
+* Updated the visual styles
+* Added additional actions and filters
+* imroved saving speed
+
+
+= 1.1.10 ( April, 2015) =
+
+= Bugs Fixed =
+* deleting entries in bulk, disabled form. - fixed.
+* viewing entries occationally gave a blank modal.
+
+= 1.1.9.10 ( April, 2015) =
+* error on checkboxes and array tag showing
+
+= 1.1.9.9 ( April, 2015) =
+
+= Critical Bug fix =
+* on php 5.3 widget forms and function render forms gave "permission denied" error. solved.
+
+= 1.1.9.8 ( April, 2015) =
+
+= Improvements =
+* Added setting for custom thousand separator on calculator in money format.
+* improved array handling
+* set conditions to look at lable not value.
+* slugs from option based fields can now reference the lable with %field_slug:label%
+
+= Bug fixes =
+* Corrected a bug in the file upload not stopping on incorrect file type
+* fixed an action in the autopopulate options for field config
+* fixed a bug that made the field bind autocomplete box dissapear when scrolling
+
+
+
+= 1.1.9.7 ( April, 2015) =
+
+= Bug fixes =
+* Corrected a bug that allowed setting a field to its own conditional (infinte loop)
+
+= Additions =
+* Added a "Entry List" behaviour to Variables to allow the variable to show in entry list.
+* Added filter 'caldera_forms_get_form' for filtering form structure before using it.
+* Added the ability to render forms directly from an array structure ( Experimental dev feature : Allows you to render forms from a structure without needing to import one ).
+
+= Improvements =
+* Made selected field in edit easier to see.
+* Added a Drfat / Deactivate mode for forms.
+
+= 1.1.9.6 ( April, 2015) =
+
+= Bug fixes =
+* slashes removed on mailer body
+* Reset fixed for toggle buttons working
+* reCaptcha multi instances
+
+= Improvements =
+* changed the delete element and processor buttons to gray
+* changed the Success message box to a textarea for larger notices.
+
+= Added =
+* added custom ajax callbacks and overrides
+* Increment value processor
+* added BCC and Reply To options for mailer
+* Mailer Debug mode to track issues with sending notifications
+
+= 1.1.9.5 ( March, 2015) =
+
+= Bug fixes =
+* Fixed datepicker language loader ... again
+* Pagination next validator on checkbox prevented progression
+
+= Improvements =
+* cleaned up the view entry modal a bit
+* cleaned up paragraph entry view
+* moved a few hooks around for better handling
+* added custom class to html element
+
+
+= 1.1.9.4 ( March, 2015) =
+
+= Improvements =
+* Added US States to dropdown as option
+
+= Bug fixes =
+* Fixed a clash with FacetWP pagination
+* Fixed a bug that stoped the text editor from running on WordPress 3.9
+* A few minor bug fixes and improvements
+
+
+= 1.1.9.3 ( Febuary, 2015) =
+
+= Improvements =
+* Added ID or Name value selector for autopopulation on selects
+* Importer now creates a new form and wont overide the original.
+* Modals only close on the dismiss or cancel buttons. no longer on clicking the overlay. (better for management)
+* Added Filter: `caldera_forms_autoresponse_config` to allow modifiying the auto responder config
+* Added Filter: `caldera_forms_autoresponse_mail` to allow modifiying the auto responder mail object before sending
+* Changed the form ajax handler to use the more reliable wp admin-ajax method
+* Hooks to extend the autopopulate for option based fields ( caldera_forms_autopopulate_types & caldera_forms_autopopulate_type_config )
+
+= Updated =
+* Updated the reCaptcha to use Google's new version
+
+= Bug Fix =
+* a few small minor issues where resolved.
+
+
+= 1.1.9.2 (30 November, 2014) =
+
+= Bug Fix =
+* Issue with HTML binding not working. Solved but need to explore a little more later.
+* a few smaller bug fixes & optimisations
 
 = 1.1.9.1 (27 october, 2014) =
 
@@ -314,4 +475,4 @@ none yet.
 Initial Release
 
 == Upgrade Notice ==
-still new, so nothing to upgrade.
+Autoupdated in WordPress admin.
