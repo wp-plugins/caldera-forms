@@ -81,7 +81,7 @@ if(!isset($element['mailer']['enable_mailer'])){
 			<label><?php echo __('Recipients', 'caldera-forms'); ?> </label>
 			<div class="caldera-config-field">
 				<input type="text" class="field-config magic-tag-enabled" name="config[mailer][recipients]" value="<?php echo $element['mailer']['recipients']; ?>" style="width:400px;">
-				<p class="description"><?php echo __('Comma separated list of email addresses.', 'caldera-forms'); ?></p>
+				<p class="description"><?php echo __('Comma separated list of email addresses to send the message to.', 'caldera-forms'); ?></p>
 			</div>
 
 		</div>
@@ -89,7 +89,7 @@ if(!isset($element['mailer']['enable_mailer'])){
 			<label><?php echo __('BCC', 'caldera-forms'); ?> </label>
 			<div class="caldera-config-field">
 				<input type="text" class="field-config magic-tag-enabled" name="config[mailer][bcc_to]" value="<?php if(isset( $element['mailer']['bcc_to'] ) ){ echo $element['mailer']['bcc_to']; } ?>" style="width:400px;">
-				<p class="description"><?php echo __('Comma separated list of email addresses.', 'caldera-forms'); ?></p>
+				<p class="description"><?php echo __('Comma separated list of email addresses to send a BCC to.', 'caldera-forms'); ?></p>
 			</div>
 		</div>
 
@@ -112,10 +112,15 @@ if(!isset($element['mailer']['enable_mailer'])){
 		<div class="caldera-config-group">
 			<label><?php echo __('Debug Mailer', 'caldera-forms'); ?></label>
 			<div class="caldera-config-field">
-				<label><input type="checkbox" value="1" name="config[debug_mailer]" class="field-config"<?php if(isset($element['debug_mailer'])){ echo ' checked="checked"'; } ?>> <?php echo __('Enable email send transation log', 'caldera-forms'); ?></label>
+				<label><input type="checkbox" value="1" name="config[debug_mailer]" class="field-config"<?php if(isset($element['debug_mailer'])){ echo ' checked="checked"'; } ?>> <?php echo __('Enable email send transaction log', 'caldera-forms'); ?></label>
 				<p class="description"><?php echo __('If set, entries will have a "Mailer Debug" meta tab to see the transaction log. Do not keep this enabled on production as it sends two emails for tracking.', 'caldera-forms'); ?></p>
+				<p class="description">
+					<?php _e( sprintf( 'If you are having email issues, we strongly recommend configuring a third-party mailer service, which is easy to do. %1s.',  sprintf( '<a href="https://calderawp.com/doc/improving-the-reliability-of-emails-sent-through-caldera-forms/" target="_blank" rel="nofollow">%1s</a>' , __( 'Learn more here', 'caldera-forms' ),  'caldera-forms')  ) ); ?>
+				</p>
 			</div>
 		</div>
+
+
 
 		<?php do_action( 'caldera_forms_mailer_config', $element ); ?>
 

@@ -1,9 +1,9 @@
 === Caldera Forms ===
 Contributors: Desertsnowman, Shelob9
-Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms, calderawp, wp form, responsive, forms, form, drag and drop, email, awesome
+Tags: forms, formbuilder, form builder, contact form, contact, custom form, custom forms, forms creator, caldera forms, calderawp, wp form, responsive, forms, form, drag and drop, email, awesome, wordpress free form builder, form builder plugin wordpress, wordpress builder plugin, wordpress forms builder, form builder wordpress, contact form builder wordpress
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 1.2.3
+Stable tag: 1.3.0.1
 License: GPLv2
 
 Create beautiful, responsive forms with a simple drag and drop editor.
@@ -34,6 +34,7 @@ John Teague of Theme Surgeons includes Caldera Forms in his list of [WordPress p
 * [Run Action](https://calderawp.com/downloads/caldera-forms-run-action/) - Trigger a WordPress action with your form submission.
 * [Sprout Invoices Integration](https://wordpress.org/plugins/caldera-forms-sprout-invoices-integration/) - Use Caldera Forms for [Sprout Invoice](https://sproutapps.co/sprout-invoices/) forms.
 * [Conditional Fail](https://wordpress.org/plugins/conditional-fail-for-caldera-forms/) - Set conditions to cause that if met will allow or prevent form submssion.
+* [Postmatic](https://calderawp.com/downloads/postmatic-for-caldera-forms/) - Subscribe users to your posts and comments using Postmatic.
 
 = Premium Add-Ons =
 * [MailChimp](https://calderawp.com/downloads/caldera-forms-mailchimp-add-on/) - Seamlessly integrate MailChimp optins into your forms
@@ -42,6 +43,11 @@ John Teague of Theme Surgeons includes Caldera Forms in his list of [WordPress p
 * [Users](https://calderawp.com/downloads/caldera-forms-users-add/) - Register or login users from your form.
 * [Geolocation](https://calderawp.com/downloads/geolocation-field-for-caldera-forms/) - Make a text field a geolocation auto-complete field and recorded geocoded data.
 * [Mark Viewed](https://calderawp.com/downloads/caldera-forms-mark-viewed/) - Let users track what content they have viewed.
+* [Dwolla](https://calderawp.com/downloads/dwolla-for-caldera-forms/) - Accept payments with low fees using Dwolla.
+* [Authorize.net](https://calderawp.com/downloads/authorize-net-for-caldera-forms/) Accept all major credit cards by integrating with Authorize.net.
+* [BrainTree](https://calderawp.com/downloads/braintree-for-caldera-forms/) Accept credit card payments using BrainTree.
+* [Nexmo](https://calderawp.com/downloads/nexmo-caldera-forms/) Get SMS notifications of form submissions.
+* [Mail Templates](https://calderawp.com/downloads/mail-templates-for-caldera-forms/) - Add your logo, and your brand's color scheme to your emails sent from Caldera Forms.
 
 = A Few Feature Highlights =
 * Drag and drop responsive form builder.
@@ -100,6 +106,30 @@ none yet.
 
 == Changelog ==
 
+= 1.3.0.1 ( September 8, 2015 ) =
+
+= Bugs Fixed =
+* Scripts and Styles now load only on pages with forms
+* Fixed a bug that conflicted with WooCommerce v2.4.6
+* put back the "disable" condition
+* fixes "is greater" and "is smaller" condition bug that reverted to is
+* autopopulate select fields use ID correctly for post_type and ter_id for taxonomy
+
+
+
+= 1.3.0 ( August 23, 2015 ) =
+* Improved: Adding rows in form layout.
+* Added: Conditional groups.
+* Added: New helper classes for form processors.
+* Fixed: Issue where forms with a file field, without a file uploaded, would break mailer validation.
+* Added: Date range settings for date picker fields.
+* Improved: Colors in form editor.
+* Improved: Inline docs in Caldera_Forms class.
+* Added: 2 new form templates.
+* Fixed: Issue with field scripts being double loaded.
+* Fixed: Issue affecting color pickers as conditional fields.
+* Update Translations: German (de_DE), Spanish (es_ES), French (fr_FR), Japanese (ja), Portuguese (pt_PT), Turkish (tr_TR).
+
 = 1.2.3 ( August 7, 2015) =
 
 = Bugs Fixed =
@@ -121,10 +151,9 @@ none yet.
 * Abstracted final DB saving and mailer into new class
 
 = New Hooks =
-* Added: "caldera_forms_get_form_templates : filter to add your own templates to new form templates
+* caldera_forms_get_form_templates : filter to add your own templates to new form templates
 * Added "caldera_forms_mailer_failed" action to run when main mailer fails
 * Added "caldera_forms_autoresponder_failed" action to run when autoresponder fails.
-* Added "caldera_forms_render_entry_id" filter to set entry ID when loading form.
 
 
 = 1.2.2 ( June, 2015) =
@@ -517,4 +546,5 @@ none yet.
 Initial Release
 
 == Upgrade Notice ==
-Autoupdated in WordPress admin.
+= 1.3.0 =
+New conditional groups!
