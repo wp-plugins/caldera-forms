@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Caldera Forms\n"
 "POT-Creation-Date: 2016-01-20 08:54+0100\n"
-"PO-Revision-Date: 2016-01-20 10:15+0100\n"
+"PO-Revision-Date: 2016-01-20 10:52+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr "Egyszerű kapcsolat űrlap"
 
 #: ../classes/admin.php:147
 msgid "Variable Pricing Form, with add-on products."
-msgstr ""
+msgstr "Variálható megrendelő űrlap hozzáadható termékekkel."
 
 #: ../classes/admin.php:151
 msgid "Registration Form, with optional additional participants."
@@ -181,17 +181,19 @@ msgstr "Reszponzív beállítások"
 
 #: ../classes/admin.php:1544
 msgid "Grid Collapse"
-msgstr ""
+msgstr "Grid összeomlás"
 
 #: ../classes/admin.php:1546
 msgid ""
 "Set the smallest screen size at which to collapse the grid. (based on "
 "Bootstrap 3.0)"
 msgstr ""
+"Add meg a legkisebb képernyőméretet, amelynél a grid összeomlik (Bootstrap "
+"3.0 alapú)"
 
 #: ../classes/admin.php:1553
 msgid "Maintain grid always"
-msgstr ""
+msgstr "Sosem omlik össze"
 
 #: ../classes/admin.php:1573 ../ui/panels/emailer.php:32
 msgid "Mailer"
@@ -203,7 +205,7 @@ msgstr "Email értesítés beállításai"
 
 #: ../classes/core.php:434
 msgid "The wasn't entered correct."
-msgstr ""
+msgstr "Hibás bevitel."
 
 #: ../classes/core.php:434 ../fields/button/config_template.php:9
 msgid "Reset"
@@ -276,11 +278,11 @@ msgstr "Összes"
 
 #: ../classes/core.php:1085
 msgid "Range Slider"
-msgstr ""
+msgstr "Csúszka"
 
 #: ../classes/core.php:1088
 msgid "Range Slider input field"
-msgstr ""
+msgstr "Csúszka beviteli mező minimális és maximális értékkel"
 
 #: ../classes/core.php:1122
 msgid "Star Rating"
@@ -383,7 +385,7 @@ msgstr "Kapcsoló"
 #: ../classes/core.php:1309 ../classes/core.php:1338 ../classes/core.php:1357
 #: ../classes/core.php:1376 ../classes/core.php:1449
 msgid "Select Options"
-msgstr ""
+msgstr "Opciók választása"
 
 #: ../classes/core.php:1335 ../classes/core.php:1336
 msgid "Dropdown Select"
@@ -395,7 +397,7 @@ msgstr "Jelölőnégyzet"
 
 #: ../classes/core.php:1373 ../classes/core.php:1374
 msgid "Radio"
-msgstr ""
+msgstr "Rádiógomb"
 
 #: ../classes/core.php:1391 ../classes/core.php:1392
 msgid "Date Picker"
@@ -451,6 +453,8 @@ msgstr "kitöltése kötelező"
 #: ../classes/core.php:3947
 msgid "Use [caldera_forms id=\"cf..\" modal=\"true\"]Click Me[/caldera_forms]"
 msgstr ""
+"Használd ezt: [caldera_forms id=\"cf..\" modal=\"true\"]Click Me[/"
+"caldera_forms]"
 
 #: ../classes/core.php:4061 ../classes/core.php:4067
 msgid "Form is currently not active."
@@ -508,7 +512,7 @@ msgstr ""
 
 #: ../fields/calculation/config.php:2
 msgid "Element"
-msgstr ""
+msgstr "Elem"
 
 #: ../fields/calculation/config.php:8
 msgid "Classes"
@@ -549,7 +553,7 @@ msgstr ""
 #: ../fields/checkbox/config_template.php:3
 #: ../fields/radio/config_template.php:4
 msgid "Inline"
-msgstr ""
+msgstr "Beágyazott"
 
 #: ../fields/color_picker/setup.php:2 ../fields/date_picker/setup.php:2
 #: ../fields/email/config.php:8 ../fields/paragraph/config_template.php:14
@@ -568,17 +572,19 @@ msgstr "Formátum"
 
 #: ../fields/date_picker/setup.php:14
 msgid "Autoclose"
-msgstr ""
+msgstr "Automatikus lezárás"
 
 #: ../fields/date_picker/setup.php:16
 msgid "Enable autoclose"
-msgstr ""
+msgstr "Automatikus lezárás bekapcsolása"
 
 #: ../fields/date_picker/setup.php:17
 msgid ""
 "If enabled, the date picker will automatically close after selecting the "
 "final input"
 msgstr ""
+"Ha bekapcsolod, a dátumválasztó automatikusan bezáródik az utolsó mező "
+"kiválasztása után."
 
 #: ../fields/date_picker/setup.php:21
 msgid "Start View"
@@ -602,7 +608,7 @@ msgstr ""
 
 #: ../fields/date_picker/setup.php:32
 msgid "Start Date"
-msgstr ""
+msgstr "Kezdési dátum"
 
 #: ../fields/date_picker/setup.php:35
 msgid "The starting date of the date picker like +1d, -2y, +4m. 0d for today "
@@ -610,7 +616,7 @@ msgstr ""
 
 #: ../fields/date_picker/setup.php:39
 msgid "End Date"
-msgstr ""
+msgstr "Befejezési dátum"
 
 #: ../fields/date_picker/setup.php:42
 msgid "The ending date of the date picker like +1d, -2y, +4m. 0d for today "
@@ -652,7 +658,7 @@ msgstr "Email mező"
 
 #: ../fields/gravatar/config.php:10
 msgid "Mystery Man"
-msgstr ""
+msgstr "Rejtélyes Férfi"
 
 #: ../fields/gravatar/config.php:11
 msgid "Blank"
@@ -660,23 +666,23 @@ msgstr "Üres"
 
 #: ../fields/gravatar/config.php:12
 msgid "Gravatar Logo"
-msgstr ""
+msgstr "Gravatar Logo"
 
 #: ../fields/gravatar/config.php:13
 msgid "Identicon (Generated)"
-msgstr ""
+msgstr "Identicon (Generált)"
 
 #: ../fields/gravatar/config.php:14
 msgid "Wavatar (Generated)"
-msgstr ""
+msgstr "Wavatar (Generált)"
 
 #: ../fields/gravatar/config.php:15
 msgid "MonsterID (Generated)"
-msgstr ""
+msgstr "MonsterID (Generált)"
 
 #: ../fields/gravatar/config.php:16
 msgid "Retro (Generated)"
-msgstr ""
+msgstr "Retro (Generált)"
 
 #: ../fields/gravatar/config.php:21
 msgid "Fallback"
@@ -725,7 +731,7 @@ msgstr "Egyedi"
 
 #: ../fields/phone/config.php:22
 msgid "Use the digit 9 to indicate a number"
-msgstr ""
+msgstr "A számok jelöléséhez használd a '9' számjegyet"
 
 #: ../fields/range_slider/config.php:17
 msgid "Track"
@@ -1200,7 +1206,7 @@ msgstr ""
 
 #: ../ui/admin_templates.php:2 ../ui/admin_templates.php:64
 msgid "Bulk Actions"
-msgstr ""
+msgstr "Tömeges műveletek"
 
 #: ../ui/admin_templates.php:3 ../ui/admin_templates.php:65
 msgid "Export Selected"
@@ -1212,11 +1218,11 @@ msgstr "Áthelyezés a lomtárba"
 
 #: ../ui/admin_templates.php:12
 msgid "Export Type"
-msgstr ""
+msgstr "Export típus"
 
 #: ../ui/admin_templates.php:15
 msgid "Backup / Importable (json)"
-msgstr ""
+msgstr "Biztonsági mentés / Importálható (json)"
 
 #: ../ui/admin_templates.php:16
 msgid "PHP include File"
@@ -1232,19 +1238,19 @@ msgstr "Űrlap ID"
 
 #: ../ui/admin_templates.php:29
 msgid "Pin to Admin"
-msgstr ""
+msgstr "Hozzáadás az admin menühöz"
 
 #: ../ui/admin_templates.php:31
 msgid "Set form to be pinned to Admin Menu"
-msgstr ""
+msgstr "Hozzáadja az űrlapot az admin menühöz."
 
 #: ../ui/admin_templates.php:35
 msgid "Field Slugs"
-msgstr ""
+msgstr "Mező hivatkozási nevek"
 
 #: ../ui/admin_templates.php:37
 msgid "Convert Field ID's to use field slugs"
-msgstr ""
+msgstr "Hivatkozási nevek létrehozása azonosítók (ID) alapján"
 
 #: ../ui/admin_templates.php:41
 msgid ""
@@ -1255,7 +1261,7 @@ msgstr ""
 
 #: ../ui/admin_templates.php:42
 msgid "This is not a backup and cannot be imported."
-msgstr ""
+msgstr "Ez nem egy biztonsági mentés, nem lehet importálni."
 
 #: ../ui/admin_templates.php:67
 msgid "Delete Permanently"
@@ -1320,7 +1326,7 @@ msgstr "Opció hozzáadása"
 
 #: ../ui/edit.php:168
 msgid "Bulk Insert"
-msgstr ""
+msgstr "Tömeges beszúrás"
 
 #: ../ui/edit.php:171
 msgid "Single option per line. These replace the current list."
@@ -1356,7 +1362,7 @@ msgstr "Címke elrejtése"
 
 #: ../ui/edit.php:386
 msgid "Slug"
-msgstr ""
+msgstr "Hivatkozási név"
 
 #: ../ui/edit.php:392
 msgid "Condition"
@@ -1377,7 +1383,7 @@ msgstr "Bejegyzéslista mutatása"
 #: ../ui/edit.php:427
 msgid ""
 "Are you sure you want to remove this field?. 'Cancel' to stop. 'OK' to delete"
-msgstr ""
+msgstr "Biztosan törölni szeretnéd a mezőt?"
 
 #: ../ui/edit.php:427
 msgid "Delete Element"
@@ -1405,19 +1411,19 @@ msgstr "Űrlap leírása"
 
 #: ../ui/edit.php:521
 msgid "State"
-msgstr ""
+msgstr "Állam"
 
 #: ../ui/edit.php:523
 msgid "Deactivate / Draft"
-msgstr ""
+msgstr "Kikapcsol / Vázlat"
 
 #: ../ui/edit.php:528
 msgid "Capture Entries"
-msgstr ""
+msgstr "Bejegyzések rögzítése"
 
 #: ../ui/edit.php:536
 msgid "Pin to Menu"
-msgstr ""
+msgstr "Hozzáadás a menühöz"
 
 #: ../ui/edit.php:545
 msgid "View Entries"
@@ -1468,7 +1474,7 @@ msgstr "Eltávolít"
 
 #: ../ui/edit.php:825
 msgid "Set Element"
-msgstr ""
+msgstr "Elem beállítása"
 
 #: ../ui/edit.php:828
 msgid "No description given"
@@ -1508,7 +1514,7 @@ msgstr "tartalmaz"
 
 #: ../ui/edit.php:907 ../ui/edit.php:930
 msgid "Select field first"
-msgstr ""
+msgstr "Először válassz mezőt"
 
 #: ../ui/edit.php:912 ../ui/panels/conditions.php:5
 #: ../ui/panels/conditions.php:129
@@ -1633,6 +1639,8 @@ msgid ""
 "The email address of the person filling in the form. This will allow the "
 "email to be replied directly to the sender."
 msgstr ""
+"Az űrlapot kitöltő felhasználó email címe. Ez lehetővé teszi, hogy válaszolj "
+"közvetlenül a küldőnek."
 
 #: ../ui/panels/emailer.php:64
 msgid "Email Type"
@@ -1640,11 +1648,11 @@ msgstr "Email típus"
 
 #: ../ui/panels/emailer.php:73
 msgid "CSV Include"
-msgstr ""
+msgstr "CSV csatolása"
 
 #: ../ui/panels/emailer.php:75
 msgid "Attach a CSV version of the submission"
-msgstr ""
+msgstr "A bekülés adatait CSV formátumban csatolja a levélhez."
 
 #: ../ui/panels/emailer.php:81
 msgid "Recipients"
@@ -1656,15 +1664,19 @@ msgstr "Vesszővel elválasztott email címek, amelyek megkapják az üzenetet."
 
 #: ../ui/panels/emailer.php:89
 msgid "BCC"
-msgstr ""
+msgstr "Titkos másolat"
 
 #: ../ui/panels/emailer.php:92
 msgid "Comma separated list of email addresses to send a BCC to."
 msgstr ""
+"Vesszővel elválasztott email címek, akik titkos másolatot kapnak az "
+"üzenetről."
 
 #: ../ui/panels/emailer.php:100
 msgid "Use %field_slug% to use a value from the form"
 msgstr ""
+"Használd a %mezo_hivatkozasi_nevet%, ha az űrlap egyik mezőjének értékét "
+"szeretnéd megadni."
 
 #: ../ui/panels/emailer.php:104
 msgid "Email Message"
@@ -1676,6 +1688,10 @@ msgid ""
 "build an automatic mail based on form content. Leaving the mailer blank, "
 "will create and automatic summary."
 msgstr ""
+"A Mágikus Címkék (például %mezo_hivatkozasi_nev%) a beküldött adatokkal "
+"helyettesíthetőek. Használd a {summary} címkét a nyers űrlapadatok "
+"automatikus megjelenítéséhez. Ha üresen hagyod ezt a mezőt, ezt az "
+"automatikus összegzést fogja elküldeni."
 
 #: ../ui/panels/emailer.php:113
 msgid "Debug Mailer"
@@ -1691,6 +1707,9 @@ msgid ""
 "log. Do not keep this enabled on production as it sends two emails for "
 "tracking."
 msgstr ""
+"Ha bekapcsolod, a bejegyzések egy \"Levelező Hibakeresés\" fület is kapnak, "
+"amelyen keresztül elérhető lesz a tranzakciós napló. Éles környezetben ne "
+"használd ezt az opciót."
 
 #: ../ui/panels/emailer.php:118
 msgid "Learn more here"
